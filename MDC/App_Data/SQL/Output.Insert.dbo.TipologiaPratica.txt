@@ -1,0 +1,31 @@
+Il contesto di database è stato sostituito con 'DatabaseMDC'.
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)
+
+(Righe interessate: 1)

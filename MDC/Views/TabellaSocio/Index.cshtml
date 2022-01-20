@@ -1,0 +1,106 @@
+﻿@model IEnumerable<MDC.Models.Socio>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodiceFiscale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cognome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNascita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sesso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataIscrizione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndirizzoResidenza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComuneN.Descrizione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComuneR.Descrizione)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodiceFiscale)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cognome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataNascita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sesso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataIscrizione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndirizzoResidenza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComuneN.Descrizione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComuneR.Descrizione)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdSocio }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdSocio }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdSocio })
+        </td>
+    </tr>
+}
+
+</table>

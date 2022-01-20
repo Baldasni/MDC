@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/css/subMenu")
+    @Scripts.Render("~/bundles/js/subMenu")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @RenderSection("css", required: false)
+    @{ 
+        var action = (ViewContext.RouteData.Values["action"] ?? "").ToString();
+        var controller = (ViewContext.RouteData.Values["controller"] ?? "").ToString();
+        var area = (ViewContext.RouteData.DataTokens["area"] ?? "").ToString();
+    }
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            @*@Html.ActionLink("M.D.C.", "Index", "Home", new { area = "" }, new { @class = "navbar-brand logo" })*@
+            <a href='@Url.Action("Index", "Home", new { area = "" })' class="navbar-brand">
+                <img src='@Url.Content("~/Content/images/MDCtrasparente.png")' class="logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <li class="nav-item @(action == "Index" ? "active" : "")">
+                            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item @(action == "About" ? "active" : "")">
+                            @Html.ActionLink("Informazioni", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item @(action == "Contact" ? "active" : "")">
+                            @Html.ActionLink("Contatto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    }
+                    else
+                    {
+                        var activeGestioneSoci = "";
+                        if (controller == "GestioneSoci"
+                                                         && (action == "Inserimento"
+                                                            || action == "Ricerca"
+                                                            || action == "Rinnovo"))
+                        { activeGestioneSoci = "active"; }
+
+                        <li class="nav-item dropdown @activeGestioneSoci ">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Gestione Soci
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @Html.ActionLink("Ricerca", "Ricerca", "GestioneSoci", new { area = "" }, new { @class = "dropdown-item" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Inserimento", "Inserimento", "GestioneSoci", new { area = "" }, new { @class = "dropdown-item" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Rinnovo Tessera", "Rinnovo", "GestioneSoci", new { area = "" }, new { @class = "dropdown-item" })
+                            </div>
+                        </li>
+                        var activeGestionePratiche = "";
+                        if (controller == "GestionePratiche"
+                                                         && (action == "Inserimento"
+                                                            || action == "Ricerca"))
+                        { activeGestionePratiche = "active"; }
+
+                        <li class="nav-item dropdown @activeGestionePratiche ">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Gestione Pratiche
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @Html.ActionLink("Ricerca", "Ricerca", "GestionePratiche", new { area = "" }, new { @class = "dropdown-item" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Inserimento", "Inserimento", "GestionePratiche", new { area = "" }, new { @class = "dropdown-item" })
+                            </div>
+                        </li>
+                        var activeGestioneConsulenze = "";
+                        if (controller == "GestioneConsulenze"
+                                                         && (action == "Inserimento"
+                                                            || action == "Ricerca"))
+                        { activeGestioneConsulenze = "active"; }
+
+                        <li class="nav-item dropdown @activeGestioneConsulenze ">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Gestione Consulenze
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @Html.ActionLink("Ricerca", "Ricerca", "GestioneConsulenze", new { area = "" }, new { @class = "dropdown-item" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Inserimento", "Inserimento", "GestioneConsulenze", new { area = "" }, new { @class = "dropdown-item" })
+                            </div>
+                        </li>
+                        if (Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Manager"))
+                        {
+                            var activeGestioneReport = "";
+                            if (controller == "GestioneReport"
+                                                             && (action == "Riepilogo"
+                                                                || action == "ReportAnno"
+                                                                || action == "ReportSportello"))
+                            { activeGestioneReport = "active"; }
+
+                            <li class="nav-item dropdown @activeGestioneReport ">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Report
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @Html.ActionLink("Riepilogo", "Riepilogo", "GestioneReport", new { area = "" }, new { @class = "dropdown-item" })
+                                    <div class="dropdown-divider"></div>
+                                    @Html.ActionLink("Report Anno", "ReportAnno", "GestioneReport", new { area = "" }, new { @class = "dropdown-item" })
+                                    <div class="dropdown-divider"></div>
+                                    @Html.ActionLink("Report Sportello", "ReportSportello", "GestioneReport", new { area = "" }, new { @class = "dropdown-item" })
+                                </div>
+                            </li>
+                        }
+                    }
+
+                    @*<li class="nav-item dropdown @(ViewContext.RouteData.Values["Action"].ToString() == "Identita" ? "active" : "") @(ViewContext.RouteData.Values["Action"].ToString() == "NonIdentita" ? "active" : "")">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Test
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @Html.ActionLink("Test Registrato", "Identita", "Test", new { area = "" }, new { @class = "dropdown-item" })
+                        <div class="dropdown-divider"></div>
+                        @Html.ActionLink("Test Registrato Admin", "IdentitaAdmin", "Test", new { area = "" }, new { @class = "dropdown-item" })
+                        <div class="dropdown-divider"></div>
+                        @Html.ActionLink("Test Anonimo", "NonIdentita", "Test", new { area = "" }, new { @class = "dropdown-item" })
+                    </div>
+                </li>*@
+
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                        <li class="nav-item dropdown  @(action == "ListaUtenti" ? "active" : "") @(action == "ListaRuoli" ? "active" : "")">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    @Html.ActionLink("Utenti", "ListaUtenti", "Admin", new { area = "" }, new { @class = "dropdown-item" })
+                                    @*@Html.ActionLink("Lista Ruoli", "ListaRuoli", "Admin", new { area = "" }, new { @class = "dropdown-item" })*@
+                                </li>
+                                <li class="dropdown-divider"><a class="dropdown-item" href="#"></a></li>
+                                <li>
+                                    @Html.ActionLink("Tabelle", "ListaTabelle", "Admin", new { area = "" }, new { @class = "dropdown-item  dropdown-toggle" })
+
+                                    <ul class="submenu dropdown-menu">
+                                        <li>
+                                            @Html.ActionLink("Elenco Tabelle", "ListaTabelle", "Admin", new { area = "" }, new { @class = "dropdown-item" })
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Tabella Comune", "Index", "TabellaComune", new { area = "" }, new { @class = "dropdown-item  dropdown-toggle" })
+                                            <ul class="submenu dropdown-menu">
+                                                <li>
+                                                    @Html.ActionLink("Lista", "Index", "TabellaComune", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Crea", "Create", "TabellaComune", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Tabella Consulenza", "Index", "TabellaConsulenza", new { area = "" }, new { @class = "dropdown-item  dropdown-toggle" })
+                                            <ul class="submenu dropdown-menu">
+                                                <li>
+                                                    @Html.ActionLink("Lista", "Index", "TabellaConsulenza", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Crea", "Create", "TabellaConsulenza", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Tabella Pratica", "Index", "TabellaPratica", new { area = "" }, new { @class = "dropdown-item  dropdown-toggle" })
+                                            <ul class="submenu dropdown-menu">
+                                                <li>
+                                                    @Html.ActionLink("Lista", "Index", "TabellaPratica", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Crea", "Create", "TabellaPratica", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Tabella Provincia", "Index", "TabellaProvincia", new { area = "" }, new { @class = "dropdown-item  dropdown-toggle" })
+                                            <ul class="submenu dropdown-menu">
+                                                <li>
+                                                    @Html.ActionLink("Lista", "Index", "TabellaProvincia", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Crea", "Create", "TabellaProvincia", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Tabella Rinnovo", "Index", "TabellaRinnovo", new { area = "" }, new { @class = "dropdown-item  dropdown-toggle" })
+                                            <ul class="submenu dropdown-menu">
+                                                <li>
+                                                    @Html.ActionLink("Lista", "Index", "TabellaRinnovo", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Crea", "Create", "TabellaRinnovo", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Tabella Socio", "Index", "TabellaSocio", new { area = "" }, new { @class = "dropdown-item  dropdown-toggle" })
+                                            <ul class="submenu dropdown-menu">
+                                                <li>
+                                                    @Html.ActionLink("Lista", "Index", "TabellaSocio", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Crea", "Create", "TabellaSocio", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Tabella Sportello", "Index", "TabellaSportello", new { area = "" }, new { @class = "dropdown-item  dropdown-toggle" })
+                                            <ul class="submenu dropdown-menu">
+                                                <li>
+                                                    @Html.ActionLink("Lista", "Index", "TabellaSportello", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Crea", "Create", "TabellaSportello", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Tabella StatoPratica", "Index", "TabellaStatoPratica", new { area = "" }, new { @class = "dropdown-item  dropdown-toggle" })
+                                            <ul class="submenu dropdown-menu">
+                                                <li>
+                                                    @Html.ActionLink("Lista", "Index", "TabellaStatoPratica", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Crea", "Create", "TabellaStatoPratica", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Tabella TipologiaContatto", "Index", "TabellaTipologiaContatto", new { area = "" }, new { @class = "dropdown-item  dropdown-toggle" })
+                                            <ul class="submenu dropdown-menu">
+                                                <li>
+                                                    @Html.ActionLink("Lista", "Index", "TabellaTipologiaContatto", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Crea", "Create", "TabellaTipologiaContatto", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Tabella TipologiaPratica", "Index", "TabellaTipologiaPratica", new { area = "" }, new { @class = "dropdown-item  dropdown-toggle" })
+                                            <ul class="submenu dropdown-menu">
+                                                <li>
+                                                    @Html.ActionLink("Lista", "Index", "TabellaTipologiaPratica", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Crea", "Create", "TabellaTipologiaPratica", new { area = "" }, new { @class = "dropdown-item" })
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+
+
+                    @*esempio di menu' con sotto menu' *@
+                    <!--<li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Treeview menu  </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="#"> Dropdown item 0 &raquo; </a>
+                        <ul class="submenu dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Submenu item 0</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
+                    <li class="dropdown-divider"><a class="dropdown-item" href="#"></a></li>
+                    <li>
+                        <a class="dropdown-item" href="#"> Dropdown item 2 &raquo; </a>
+                        <ul class="submenu dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
+                            <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+                                <ul class="submenu dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Multi level 1</a></li>
+                                    <li><a class="dropdown-item" href="#">Multi level 2</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
+                            <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li>
+                    <li><a class="dropdown-item" href="#"> Dropdown item 4 </a></li>
+                </ul>
+            </li>-->
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </nav>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/popper")
+    
+    @RenderSection("scripts", required: false)
+</body>
+</html>

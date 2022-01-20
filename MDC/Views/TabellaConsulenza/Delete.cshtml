@@ -1,0 +1,89 @@
+﻿@model MDC.Models.Consulenza
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Consulenza</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataConsulenza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataConsulenza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescrizioneConsulenza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescrizioneConsulenza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nominativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nominativo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comune.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comune.Descrizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Socio.CodiceFiscale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Socio.CodiceFiscale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipologiaContatto.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipologiaContatto.Descrizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipologiaPratica.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipologiaPratica.Descrizione)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Cancella" class="btn btn-default btn-outline-primary" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

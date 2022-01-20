@@ -1,0 +1,59 @@
+﻿@model MDC.Models.Rinnovo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Rinnovo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anno1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anno1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anno2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anno2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quota_iscrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quota_iscrizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Socio.CodiceFiscale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Socio.CodiceFiscale)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRinnovo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

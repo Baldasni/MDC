@@ -1,0 +1,88 @@
+﻿@model MDC.Models.Pratica
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Pratica</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdSocio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 row no-gutters">
+                @Html.DropDownList("IdSocio", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ActionLink("Crea Socio", "Create", "TabellaSocio", new { area = "" }, new { @class = "mx-2 btn btn-default btn-outline-primary" })
+                @Html.ValidationMessageFor(model => model.IdSocio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdSportello, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 row no-gutters">
+                @Html.DropDownList("IdSportello", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ActionLink("Crea Sportello", "Create", "TabellaSportello", new { area = "" }, new { @class = "mx-2 btn btn-default btn-outline-primary" })
+                @Html.ValidationMessageFor(model => model.IdSportello, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataPratica, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DataPratica, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DataPratica, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdTipologiaPratica, "IdTipologiaPratica", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 row no-gutters">
+                @Html.DropDownList("IdTipologiaPratica", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ActionLink("Crea Tipo Pratica", "Create", "TabellaTipologiaPratica", new { area = "" }, new { @class = "mx-2 btn btn-default btn-outline-primary" })
+                @Html.ValidationMessageFor(model => model.IdTipologiaPratica, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DescrizionePratica, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DescrizionePratica, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DescrizionePratica, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdStatoPratica, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 row no-gutters">
+                @Html.DropDownList("IdStatoPratica", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ActionLink("Crea Stato Pratica", "Create", "TabellaStatoPratica", new { area = "" }, new { @class = "mx-2 btn btn-default btn-outline-primary" })
+                @Html.ValidationMessageFor(model => model.IdStatoPratica, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DescrizioneRiscontro, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DescrizioneRiscontro, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DescrizioneRiscontro, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crea" class="btn btn-default btn-outline-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

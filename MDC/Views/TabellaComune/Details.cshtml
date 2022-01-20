@@ -1,0 +1,35 @@
+﻿@model MDC.Models.Comune
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comune</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descrizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Provincia.Sigla)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Provincia.Sigla)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdComune }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

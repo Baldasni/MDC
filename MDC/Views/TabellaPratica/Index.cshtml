@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MDC.Models.Pratica>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DataPratica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescrizionePratica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescrizioneRiscontro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Socio.CodiceFiscale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sportello.Descrizione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatoPratica.Descrizione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipologiaPratica.Descrizione)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataPratica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescrizionePratica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescrizioneRiscontro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Socio.CodiceFiscale)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sportello.Descrizione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatoPratica.Descrizione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipologiaPratica.Descrizione)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdPratica }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdPratica }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdPratica })
+        </td>
+    </tr>
+}
+
+</table>

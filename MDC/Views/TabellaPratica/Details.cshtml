@@ -1,0 +1,75 @@
+﻿@model MDC.Models.Pratica
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pratica</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataPratica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataPratica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescrizionePratica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescrizionePratica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescrizioneRiscontro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescrizioneRiscontro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Socio.CodiceFiscale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Socio.CodiceFiscale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sportello.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sportello.Descrizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatoPratica.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatoPratica.Descrizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipologiaPratica.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipologiaPratica.Descrizione)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdPratica }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

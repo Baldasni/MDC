@@ -1,0 +1,789 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Comune">
+          <Key>
+            <PropertyRef Name="IdComune" />
+          </Key>
+          <Property Name="IdComune" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProvincia" Type="int" Nullable="false" />
+          <Property Name="Descrizione" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Consulenza">
+          <Key>
+            <PropertyRef Name="IdConsulenza" />
+          </Key>
+          <Property Name="IdConsulenza" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdSocio" Type="uniqueidentifier" />
+          <Property Name="DataConsulenza" Type="date" Nullable="false" />
+          <Property Name="IdTipologiaPratica" Type="int" Nullable="false" />
+          <Property Name="DescrizioneConsulenza" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IdTipologiaContatto" Type="int" />
+          <Property Name="Nominativo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdComune" Type="int" />
+        </EntityType>
+        <EntityType Name="Pratica">
+          <Key>
+            <PropertyRef Name="IdPratica" />
+          </Key>
+          <Property Name="IdPratica" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdSocio" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdSportello" Type="int" Nullable="false" />
+          <Property Name="DataPratica" Type="date" Nullable="false" />
+          <Property Name="IdTipologiaPratica" Type="int" Nullable="false" />
+          <Property Name="DescrizionePratica" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IdStatoPratica" Type="int" Nullable="false" />
+          <Property Name="DescrizioneRiscontro" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="IdProvincia" />
+          </Key>
+          <Property Name="IdProvincia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sigla" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Descrizione" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Regione" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rinnovo">
+          <Key>
+            <PropertyRef Name="IdRinnovo" />
+          </Key>
+          <Property Name="IdRinnovo" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdSocio" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="Anno1" Type="int" />
+          <Property Name="Anno2" Type="int" />
+          <Property Name="QuotaIscrizione" Type="real" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Socio">
+          <Key>
+            <PropertyRef Name="IdSocio" />
+          </Key>
+          <Property Name="IdSocio" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CodiceFiscale" Type="nchar" MaxLength="16" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cognome" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataNascita" Type="date" />
+          <Property Name="IdComuneNascita" Type="int" />
+          <Property Name="Sesso" Type="nchar" MaxLength="1" />
+          <Property Name="DataIscrizione" Type="date" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefono1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefono2" Type="nvarchar" MaxLength="50" />
+          <Property Name="IndirizzoResidenza" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdComuneResidenza" Type="int" />
+          <Property Name="Cap" Type="nchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Sportello">
+          <Key>
+            <PropertyRef Name="IdSportello" />
+          </Key>
+          <Property Name="IdSportello" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descrizione" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatoPratica">
+          <Key>
+            <PropertyRef Name="IdStatoPratica" />
+          </Key>
+          <Property Name="IdStatoPratica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descrizione" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipologiaContatto">
+          <Key>
+            <PropertyRef Name="IdTipologiaContatto" />
+          </Key>
+          <Property Name="IdTipologiaContatto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descrizione" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipologiaPratica">
+          <Key>
+            <PropertyRef Name="IdTipologiaPratica" />
+          </Key>
+          <Property Name="IdTipologiaPratica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descrizione" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Comune_Provincia">
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+          <End Role="Comune" Type="Self.Comune" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="IdProvincia" />
+            </Principal>
+            <Dependent Role="Comune">
+              <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulenza_Comune">
+          <End Role="Comune" Type="Self.Comune" Multiplicity="0..1" />
+          <End Role="Consulenza" Type="Self.Consulenza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comune">
+              <PropertyRef Name="IdComune" />
+            </Principal>
+            <Dependent Role="Consulenza">
+              <PropertyRef Name="IdComune" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulenza_Socio">
+          <End Role="Socio" Type="Self.Socio" Multiplicity="0..1" />
+          <End Role="Consulenza" Type="Self.Consulenza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socio">
+              <PropertyRef Name="IdSocio" />
+            </Principal>
+            <Dependent Role="Consulenza">
+              <PropertyRef Name="IdSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulenza_TipologiaContatto">
+          <End Role="TipologiaContatto" Type="Self.TipologiaContatto" Multiplicity="0..1" />
+          <End Role="Consulenza" Type="Self.Consulenza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipologiaContatto">
+              <PropertyRef Name="IdTipologiaContatto" />
+            </Principal>
+            <Dependent Role="Consulenza">
+              <PropertyRef Name="IdTipologiaContatto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulenza_TipologiaPratica">
+          <End Role="TipologiaPratica" Type="Self.TipologiaPratica" Multiplicity="1" />
+          <End Role="Consulenza" Type="Self.Consulenza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipologiaPratica">
+              <PropertyRef Name="IdTipologiaPratica" />
+            </Principal>
+            <Dependent Role="Consulenza">
+              <PropertyRef Name="IdTipologiaPratica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pratica_Socio">
+          <End Role="Socio" Type="Self.Socio" Multiplicity="1" />
+          <End Role="Pratica" Type="Self.Pratica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socio">
+              <PropertyRef Name="IdSocio" />
+            </Principal>
+            <Dependent Role="Pratica">
+              <PropertyRef Name="IdSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pratica_Sportello">
+          <End Role="Sportello" Type="Self.Sportello" Multiplicity="1" />
+          <End Role="Pratica" Type="Self.Pratica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sportello">
+              <PropertyRef Name="IdSportello" />
+            </Principal>
+            <Dependent Role="Pratica">
+              <PropertyRef Name="IdSportello" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pratica_StatiPratica">
+          <End Role="StatoPratica" Type="Self.StatoPratica" Multiplicity="1" />
+          <End Role="Pratica" Type="Self.Pratica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatoPratica">
+              <PropertyRef Name="IdStatoPratica" />
+            </Principal>
+            <Dependent Role="Pratica">
+              <PropertyRef Name="IdStatoPratica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pratica_TipologiaPratica">
+          <End Role="TipologiaPratica" Type="Self.TipologiaPratica" Multiplicity="1" />
+          <End Role="Pratica" Type="Self.Pratica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipologiaPratica">
+              <PropertyRef Name="IdTipologiaPratica" />
+            </Principal>
+            <Dependent Role="Pratica">
+              <PropertyRef Name="IdTipologiaPratica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rinnovi_Socio">
+          <End Role="Socio" Type="Self.Socio" Multiplicity="1" />
+          <End Role="Rinnovo" Type="Self.Rinnovo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socio">
+              <PropertyRef Name="IdSocio" />
+            </Principal>
+            <Dependent Role="Rinnovo">
+              <PropertyRef Name="IdSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Socio_Comune_N">
+          <End Role="Comune" Type="Self.Comune" Multiplicity="0..1" />
+          <End Role="Socio" Type="Self.Socio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comune">
+              <PropertyRef Name="IdComune" />
+            </Principal>
+            <Dependent Role="Socio">
+              <PropertyRef Name="IdComuneNascita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Socio_Comune_R">
+          <End Role="Comune" Type="Self.Comune" Multiplicity="0..1" />
+          <End Role="Socio" Type="Self.Socio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comune">
+              <PropertyRef Name="IdComune" />
+            </Principal>
+            <Dependent Role="Socio">
+              <PropertyRef Name="IdComuneResidenza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Comune" EntityType="Self.Comune" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consulenza" EntityType="Self.Consulenza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pratica" EntityType="Self.Pratica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rinnovo" EntityType="Self.Rinnovo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Socio" EntityType="Self.Socio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sportello" EntityType="Self.Sportello" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatoPratica" EntityType="Self.StatoPratica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipologiaContatto" EntityType="Self.TipologiaContatto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipologiaPratica" EntityType="Self.TipologiaPratica" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Comune_Provincia" Association="Self.FK_Comune_Provincia">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Comune" EntitySet="Comune" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulenza_Comune" Association="Self.FK_Consulenza_Comune">
+            <End Role="Comune" EntitySet="Comune" />
+            <End Role="Consulenza" EntitySet="Consulenza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulenza_Socio" Association="Self.FK_Consulenza_Socio">
+            <End Role="Socio" EntitySet="Socio" />
+            <End Role="Consulenza" EntitySet="Consulenza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulenza_TipologiaContatto" Association="Self.FK_Consulenza_TipologiaContatto">
+            <End Role="TipologiaContatto" EntitySet="TipologiaContatto" />
+            <End Role="Consulenza" EntitySet="Consulenza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulenza_TipologiaPratica" Association="Self.FK_Consulenza_TipologiaPratica">
+            <End Role="TipologiaPratica" EntitySet="TipologiaPratica" />
+            <End Role="Consulenza" EntitySet="Consulenza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pratica_Socio" Association="Self.FK_Pratica_Socio">
+            <End Role="Socio" EntitySet="Socio" />
+            <End Role="Pratica" EntitySet="Pratica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pratica_Sportello" Association="Self.FK_Pratica_Sportello">
+            <End Role="Sportello" EntitySet="Sportello" />
+            <End Role="Pratica" EntitySet="Pratica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pratica_StatiPratica" Association="Self.FK_Pratica_StatiPratica">
+            <End Role="StatoPratica" EntitySet="StatoPratica" />
+            <End Role="Pratica" EntitySet="Pratica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pratica_TipologiaPratica" Association="Self.FK_Pratica_TipologiaPratica">
+            <End Role="TipologiaPratica" EntitySet="TipologiaPratica" />
+            <End Role="Pratica" EntitySet="Pratica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rinnovi_Socio" Association="Self.FK_Rinnovi_Socio">
+            <End Role="Socio" EntitySet="Socio" />
+            <End Role="Rinnovo" EntitySet="Rinnovo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Socio_Comune_N" Association="Self.FK_Socio_Comune_N">
+            <End Role="Comune" EntitySet="Comune" />
+            <End Role="Socio" EntitySet="Socio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Socio_Comune_R" Association="Self.FK_Socio_Comune_R">
+            <End Role="Comune" EntitySet="Comune" />
+            <End Role="Socio" EntitySet="Socio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DatabaseContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Comuni" EntityType="Model.Comune" />
+          <EntitySet Name="Consulenze" EntityType="Model.Consulenza" />
+          <EntitySet Name="Pratiche" EntityType="Model.Pratica" />
+          <EntitySet Name="Province" EntityType="Model.Provincia" />
+          <EntitySet Name="Soci" EntityType="Model.Socio" />
+          <EntitySet Name="Sportelli" EntityType="Model.Sportello" />
+          <EntitySet Name="StatiPratica" EntityType="Model.StatoPratica" />
+          <EntitySet Name="TipologieContatto" EntityType="Model.TipologiaContatto" />
+          <EntitySet Name="TipologiePratica" EntityType="Model.TipologiaPratica" />
+          <AssociationSet Name="FK_Comune_Provincia" Association="Model.FK_Comune_Provincia">
+            <End Role="Provincia" EntitySet="Province" />
+            <End Role="Comune" EntitySet="Comuni" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulenza_Comune" Association="Model.FK_Consulenza_Comune">
+            <End Role="Comune" EntitySet="Comuni" />
+            <End Role="Consulenza" EntitySet="Consulenze" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Socio_Comune_N" Association="Model.FK_Socio_Comune_N">
+            <End Role="Comune" EntitySet="Comuni" />
+            <End Role="Socio" EntitySet="Soci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Socio_Comune_R" Association="Model.FK_Socio_Comune_R">
+            <End Role="Comune" EntitySet="Comuni" />
+            <End Role="Socio" EntitySet="Soci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulenza_Socio" Association="Model.FK_Consulenza_Socio">
+            <End Role="Socio" EntitySet="Soci" />
+            <End Role="Consulenza" EntitySet="Consulenze" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulenza_TipologiaContatto" Association="Model.FK_Consulenza_TipologiaContatto">
+            <End Role="TipologiaContatto" EntitySet="TipologieContatto" />
+            <End Role="Consulenza" EntitySet="Consulenze" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulenza_TipologiaPratica" Association="Model.FK_Consulenza_TipologiaPratica">
+            <End Role="TipologiaPratica" EntitySet="TipologiePratica" />
+            <End Role="Consulenza" EntitySet="Consulenze" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pratica_Socio" Association="Model.FK_Pratica_Socio">
+            <End Role="Socio" EntitySet="Soci" />
+            <End Role="Pratica" EntitySet="Pratiche" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pratica_Sportello" Association="Model.FK_Pratica_Sportello">
+            <End Role="Sportello" EntitySet="Sportelli" />
+            <End Role="Pratica" EntitySet="Pratiche" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pratica_StatiPratica" Association="Model.FK_Pratica_StatiPratica">
+            <End Role="StatoPratica" EntitySet="StatiPratica" />
+            <End Role="Pratica" EntitySet="Pratiche" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pratica_TipologiaPratica" Association="Model.FK_Pratica_TipologiaPratica">
+            <End Role="TipologiaPratica" EntitySet="TipologiePratica" />
+            <End Role="Pratica" EntitySet="Pratiche" />
+          </AssociationSet>
+          <EntitySet Name="Rinnovi" EntityType="Model.Rinnovo" />
+          <AssociationSet Name="FK_Rinnovi_Socio" Association="Model.FK_Rinnovi_Socio">
+            <End Role="Socio" EntitySet="Soci" />
+            <End Role="Rinnovo" EntitySet="Rinnovi" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Comune">
+          <Key>
+            <PropertyRef Name="IdComune" />
+          </Key>
+          <Property Name="IdComune" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProvincia" Type="Int32" Nullable="false" />
+          <Property Name="Descrizione" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Provincia" Relationship="Model.FK_Comune_Provincia" FromRole="Comune" ToRole="Provincia" />
+          <NavigationProperty Name="Consulenza" Relationship="Model.FK_Consulenza_Comune" FromRole="Comune" ToRole="Consulenza" />
+          <NavigationProperty Name="SocioN" Relationship="Model.FK_Socio_Comune_N" FromRole="Comune" ToRole="Socio" />
+          <NavigationProperty Name="SocioR" Relationship="Model.FK_Socio_Comune_R" FromRole="Comune" ToRole="Socio" />
+        </EntityType>
+        <EntityType Name="Consulenza">
+          <Key>
+            <PropertyRef Name="IdConsulenza" />
+          </Key>
+          <Property Name="IdConsulenza" Type="Guid" Nullable="false" />
+          <Property Name="IdSocio" Type="Guid" />
+          <Property Name="DataConsulenza" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdTipologiaPratica" Type="Int32" Nullable="false" />
+          <Property Name="DescrizioneConsulenza" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IdTipologiaContatto" Type="Int32" />
+          <Property Name="Nominativo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdComune" Type="Int32" />
+          <NavigationProperty Name="Comune" Relationship="Model.FK_Consulenza_Comune" FromRole="Consulenza" ToRole="Comune" />
+          <NavigationProperty Name="Socio" Relationship="Model.FK_Consulenza_Socio" FromRole="Consulenza" ToRole="Socio" />
+          <NavigationProperty Name="TipologiaContatto" Relationship="Model.FK_Consulenza_TipologiaContatto" FromRole="Consulenza" ToRole="TipologiaContatto" />
+          <NavigationProperty Name="TipologiaPratica" Relationship="Model.FK_Consulenza_TipologiaPratica" FromRole="Consulenza" ToRole="TipologiaPratica" />
+        </EntityType>
+        <EntityType Name="Pratica">
+          <Key>
+            <PropertyRef Name="IdPratica" />
+          </Key>
+          <Property Name="IdPratica" Type="Guid" Nullable="false" />
+          <Property Name="IdSocio" Type="Guid" Nullable="false" />
+          <Property Name="IdSportello" Type="Int32" Nullable="false" />
+          <Property Name="DataPratica" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdTipologiaPratica" Type="Int32" Nullable="false" />
+          <Property Name="DescrizionePratica" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IdStatoPratica" Type="Int32" Nullable="false" />
+          <Property Name="DescrizioneRiscontro" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Socio" Relationship="Model.FK_Pratica_Socio" FromRole="Pratica" ToRole="Socio" />
+          <NavigationProperty Name="Sportello" Relationship="Model.FK_Pratica_Sportello" FromRole="Pratica" ToRole="Sportello" />
+          <NavigationProperty Name="StatoPratica" Relationship="Model.FK_Pratica_StatiPratica" FromRole="Pratica" ToRole="StatoPratica" />
+          <NavigationProperty Name="TipologiaPratica" Relationship="Model.FK_Pratica_TipologiaPratica" FromRole="Pratica" ToRole="TipologiaPratica" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="IdProvincia" />
+          </Key>
+          <Property Name="IdProvincia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sigla" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Descrizione" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Regione" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Comune" Relationship="Model.FK_Comune_Provincia" FromRole="Provincia" ToRole="Comune" />
+        </EntityType>
+        <EntityType Name="Socio">
+          <Key>
+            <PropertyRef Name="IdSocio" />
+          </Key>
+          <Property Name="IdSocio" Type="Guid" Nullable="false" />
+          <Property Name="CodiceFiscale" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cognome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataNascita" Type="DateTime" Precision="0" />
+          <Property Name="IdComuneNascita" Type="Int32" />
+          <Property Name="Sesso" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="DataIscrizione" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IndirizzoResidenza" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdComuneResidenza" Type="Int32" />
+          <Property Name="Cap" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="ComuneN" Relationship="Model.FK_Socio_Comune_N" FromRole="Socio" ToRole="Comune" />
+          <NavigationProperty Name="ComuneR" Relationship="Model.FK_Socio_Comune_R" FromRole="Socio" ToRole="Comune" />
+          <NavigationProperty Name="Consulenza" Relationship="Model.FK_Consulenza_Socio" FromRole="Socio" ToRole="Consulenza" />
+          <NavigationProperty Name="Pratica" Relationship="Model.FK_Pratica_Socio" FromRole="Socio" ToRole="Pratica" />
+          <NavigationProperty Name="Rinnovo" Relationship="Model.FK_Rinnovi_Socio" FromRole="Socio" ToRole="Rinnovo" />
+        </EntityType>
+        <EntityType Name="Sportello">
+          <Key>
+            <PropertyRef Name="IdSportello" />
+          </Key>
+          <Property Name="IdSportello" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descrizione" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pratica" Relationship="Model.FK_Pratica_Sportello" FromRole="Sportello" ToRole="Pratica" />
+        </EntityType>
+        <EntityType Name="StatoPratica">
+          <Key>
+            <PropertyRef Name="IdStatoPratica" />
+          </Key>
+          <Property Name="IdStatoPratica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descrizione" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pratica" Relationship="Model.FK_Pratica_StatiPratica" FromRole="StatoPratica" ToRole="Pratica" />
+        </EntityType>
+        <EntityType Name="TipologiaContatto">
+          <Key>
+            <PropertyRef Name="IdTipologiaContatto" />
+          </Key>
+          <Property Name="IdTipologiaContatto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descrizione" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Consulenza" Relationship="Model.FK_Consulenza_TipologiaContatto" FromRole="TipologiaContatto" ToRole="Consulenza" />
+        </EntityType>
+        <EntityType Name="TipologiaPratica">
+          <Key>
+            <PropertyRef Name="IdTipologiaPratica" />
+          </Key>
+          <Property Name="IdTipologiaPratica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descrizione" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Consulenza" Relationship="Model.FK_Consulenza_TipologiaPratica" FromRole="TipologiaPratica" ToRole="Consulenza" />
+          <NavigationProperty Name="Pratica" Relationship="Model.FK_Pratica_TipologiaPratica" FromRole="TipologiaPratica" ToRole="Pratica" />
+        </EntityType>
+        <Association Name="FK_Comune_Provincia">
+          <End Type="Model.Provincia" Role="Provincia" Multiplicity="1" />
+          <End Type="Model.Comune" Role="Comune" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="IdProvincia" />
+            </Principal>
+            <Dependent Role="Comune">
+              <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulenza_Comune">
+          <End Type="Model.Comune" Role="Comune" Multiplicity="0..1" />
+          <End Type="Model.Consulenza" Role="Consulenza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comune">
+              <PropertyRef Name="IdComune" />
+            </Principal>
+            <Dependent Role="Consulenza">
+              <PropertyRef Name="IdComune" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Socio_Comune_N">
+          <End Type="Model.Comune" Role="Comune" Multiplicity="0..1" />
+          <End Type="Model.Socio" Role="Socio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comune">
+              <PropertyRef Name="IdComune" />
+            </Principal>
+            <Dependent Role="Socio">
+              <PropertyRef Name="IdComuneNascita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Socio_Comune_R">
+          <End Type="Model.Comune" Role="Comune" Multiplicity="0..1" />
+          <End Type="Model.Socio" Role="Socio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comune">
+              <PropertyRef Name="IdComune" />
+            </Principal>
+            <Dependent Role="Socio">
+              <PropertyRef Name="IdComuneResidenza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulenza_Socio">
+          <End Type="Model.Socio" Role="Socio" Multiplicity="0..1" />
+          <End Type="Model.Consulenza" Role="Consulenza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socio">
+              <PropertyRef Name="IdSocio" />
+            </Principal>
+            <Dependent Role="Consulenza">
+              <PropertyRef Name="IdSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulenza_TipologiaContatto">
+          <End Type="Model.TipologiaContatto" Role="TipologiaContatto" Multiplicity="0..1" />
+          <End Type="Model.Consulenza" Role="Consulenza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipologiaContatto">
+              <PropertyRef Name="IdTipologiaContatto" />
+            </Principal>
+            <Dependent Role="Consulenza">
+              <PropertyRef Name="IdTipologiaContatto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulenza_TipologiaPratica">
+          <End Type="Model.TipologiaPratica" Role="TipologiaPratica" Multiplicity="1" />
+          <End Type="Model.Consulenza" Role="Consulenza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipologiaPratica">
+              <PropertyRef Name="IdTipologiaPratica" />
+            </Principal>
+            <Dependent Role="Consulenza">
+              <PropertyRef Name="IdTipologiaPratica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pratica_Socio">
+          <End Type="Model.Socio" Role="Socio" Multiplicity="1" />
+          <End Type="Model.Pratica" Role="Pratica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socio">
+              <PropertyRef Name="IdSocio" />
+            </Principal>
+            <Dependent Role="Pratica">
+              <PropertyRef Name="IdSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pratica_Sportello">
+          <End Type="Model.Sportello" Role="Sportello" Multiplicity="1" />
+          <End Type="Model.Pratica" Role="Pratica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sportello">
+              <PropertyRef Name="IdSportello" />
+            </Principal>
+            <Dependent Role="Pratica">
+              <PropertyRef Name="IdSportello" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pratica_StatiPratica">
+          <End Type="Model.StatoPratica" Role="StatoPratica" Multiplicity="1" />
+          <End Type="Model.Pratica" Role="Pratica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatoPratica">
+              <PropertyRef Name="IdStatoPratica" />
+            </Principal>
+            <Dependent Role="Pratica">
+              <PropertyRef Name="IdStatoPratica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pratica_TipologiaPratica">
+          <End Type="Model.TipologiaPratica" Role="TipologiaPratica" Multiplicity="1" />
+          <End Type="Model.Pratica" Role="Pratica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipologiaPratica">
+              <PropertyRef Name="IdTipologiaPratica" />
+            </Principal>
+            <Dependent Role="Pratica">
+              <PropertyRef Name="IdTipologiaPratica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Rinnovo">
+          <Key>
+            <PropertyRef Name="IdRinnovo" />
+          </Key>
+          <Property Name="IdRinnovo" Type="Guid" Nullable="false" />
+          <Property Name="IdSocio" Type="Guid" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Anno1" Type="Int32" />
+          <Property Name="Anno2" Type="Int32" />
+          <Property Name="QuotaIscrizione" Type="Single" Nullable="false" />
+          <NavigationProperty Name="Socio" Relationship="Model.FK_Rinnovi_Socio" FromRole="Rinnovo" ToRole="Socio" />
+        </EntityType>
+        <Association Name="FK_Rinnovi_Socio">
+          <End Type="Model.Socio" Role="Socio" Multiplicity="1" />
+          <End Type="Model.Rinnovo" Role="Rinnovo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socio">
+              <PropertyRef Name="IdSocio" />
+            </Principal>
+            <Dependent Role="Rinnovo">
+              <PropertyRef Name="IdSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="DatabaseContext">
+          <EntitySetMapping Name="Comuni">
+            <EntityTypeMapping TypeName="Model.Comune">
+              <MappingFragment StoreEntitySet="Comune">
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+                <ScalarProperty Name="IdComune" ColumnName="IdComune" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consulenze">
+            <EntityTypeMapping TypeName="Model.Consulenza">
+              <MappingFragment StoreEntitySet="Consulenza">
+                <ScalarProperty Name="IdComune" ColumnName="IdComune" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nominativo" ColumnName="Nominativo" />
+                <ScalarProperty Name="IdTipologiaContatto" ColumnName="IdTipologiaContatto" />
+                <ScalarProperty Name="DescrizioneConsulenza" ColumnName="DescrizioneConsulenza" />
+                <ScalarProperty Name="IdTipologiaPratica" ColumnName="IdTipologiaPratica" />
+                <ScalarProperty Name="DataConsulenza" ColumnName="DataConsulenza" />
+                <ScalarProperty Name="IdSocio" ColumnName="IdSocio" />
+                <ScalarProperty Name="IdConsulenza" ColumnName="IdConsulenza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pratiche">
+            <EntityTypeMapping TypeName="Model.Pratica">
+              <MappingFragment StoreEntitySet="Pratica">
+                <ScalarProperty Name="DescrizioneRiscontro" ColumnName="DescrizioneRiscontro" />
+                <ScalarProperty Name="IdStatoPratica" ColumnName="IdStatoPratica" />
+                <ScalarProperty Name="DescrizionePratica" ColumnName="DescrizionePratica" />
+                <ScalarProperty Name="IdTipologiaPratica" ColumnName="IdTipologiaPratica" />
+                <ScalarProperty Name="DataPratica" ColumnName="DataPratica" />
+                <ScalarProperty Name="IdSportello" ColumnName="IdSportello" />
+                <ScalarProperty Name="IdSocio" ColumnName="IdSocio" />
+                <ScalarProperty Name="IdPratica" ColumnName="IdPratica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Province">
+            <EntityTypeMapping TypeName="Model.Provincia">
+              <MappingFragment StoreEntitySet="Provincia">
+                <ScalarProperty Name="Regione" ColumnName="Regione" />
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="Sigla" ColumnName="Sigla" />
+                <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Soci">
+            <EntityTypeMapping TypeName="Model.Socio">
+              <MappingFragment StoreEntitySet="Socio">
+                <ScalarProperty Name="Cap" ColumnName="Cap" />
+                <ScalarProperty Name="IdComuneResidenza" ColumnName="IdComuneResidenza" />
+                <ScalarProperty Name="IndirizzoResidenza" ColumnName="IndirizzoResidenza" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Telefono1" ColumnName="Telefono1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DataIscrizione" ColumnName="DataIscrizione" />
+                <ScalarProperty Name="Sesso" ColumnName="Sesso" />
+                <ScalarProperty Name="IdComuneNascita" ColumnName="IdComuneNascita" />
+                <ScalarProperty Name="DataNascita" ColumnName="DataNascita" />
+                <ScalarProperty Name="Cognome" ColumnName="Cognome" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="CodiceFiscale" ColumnName="CodiceFiscale" />
+                <ScalarProperty Name="IdSocio" ColumnName="IdSocio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sportelli">
+            <EntityTypeMapping TypeName="Model.Sportello">
+              <MappingFragment StoreEntitySet="Sportello">
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="IdSportello" ColumnName="IdSportello" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatiPratica">
+            <EntityTypeMapping TypeName="Model.StatoPratica">
+              <MappingFragment StoreEntitySet="StatoPratica">
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="IdStatoPratica" ColumnName="IdStatoPratica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipologieContatto">
+            <EntityTypeMapping TypeName="Model.TipologiaContatto">
+              <MappingFragment StoreEntitySet="TipologiaContatto">
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="IdTipologiaContatto" ColumnName="IdTipologiaContatto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipologiePratica">
+            <EntityTypeMapping TypeName="Model.TipologiaPratica">
+              <MappingFragment StoreEntitySet="TipologiaPratica">
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="IdTipologiaPratica" ColumnName="IdTipologiaPratica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rinnovi">
+            <EntityTypeMapping TypeName="Model.Rinnovo">
+              <MappingFragment StoreEntitySet="Rinnovo">
+                <ScalarProperty Name="QuotaIscrizione" ColumnName="QuotaIscrizione" />
+                <ScalarProperty Name="Anno2" ColumnName="Anno2" />
+                <ScalarProperty Name="Anno1" ColumnName="Anno1" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="IdSocio" ColumnName="IdSocio" />
+                <ScalarProperty Name="IdRinnovo" ColumnName="IdRinnovo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Nessuno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

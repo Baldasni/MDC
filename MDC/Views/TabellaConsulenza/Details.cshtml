@@ -1,0 +1,83 @@
+﻿@model MDC.Models.Consulenza
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Consulenza</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataConsulenza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataConsulenza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescrizioneConsulenza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescrizioneConsulenza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nominativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nominativo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comune.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comune.Descrizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Socio.CodiceFiscale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Socio.CodiceFiscale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipologiaContatto.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipologiaContatto.Descrizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipologiaPratica.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipologiaPratica.Descrizione)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdConsulenza }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

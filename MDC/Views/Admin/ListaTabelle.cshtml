@@ -1,0 +1,19 @@
+﻿@model MDC.Models.ViewModels.ListaTabelleViewModel
+
+@{
+    ViewBag.Title = "Lista Tabelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ListaTabelle</h2>
+
+
+<ul>
+    @foreach (var item in Model.Tabelle)
+    {
+    <li>
+        @Html.ActionLink(item, "Index", "Admin/Tabella" + item.ToString().Substring(4)) @*, new { /* id=item.PrimaryKey */ })*@
+    </li>
+    }
+    
+</ul>
