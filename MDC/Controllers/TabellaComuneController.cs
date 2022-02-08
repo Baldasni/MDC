@@ -16,6 +16,33 @@ namespace MDC.Controllers
         private DatabaseContext db = new DatabaseContext();
 
         // GET: TabellaComune
+        public ActionResult GetComuni()
+        {
+            var comuni = db.Comuni.Include(c => c.Provincia);
+            //return View(comuni.ToList());
+
+            var model = (from comune in comuni.AsEnumerable()
+
+                         select new 
+                         {
+                             IdComune = comune.IdComune,
+                             IdProvincia = comune.IdProvincia,
+                             Provincia = comune.Provincia.Descrizione,
+                             Descrizione = comune.Descrizione
+                         }
+                         //new Comune()
+                         //{
+                         //    IdComune = comune.IdComune,
+                         //    IdProvincia = comune.IdProvincia,
+                         //    Descrizione = comune.Descrizione
+                         //}
+                         );
+
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: TabellaComune
         public ActionResult Index()
         {
             var comuni = db.Comuni.Include(c => c.Provincia);

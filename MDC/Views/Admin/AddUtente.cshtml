@@ -47,7 +47,7 @@
             </div>
         </div>
 
-    var roleList = MDC.Helper.EnumHelper<MDC.Models.IdentityModels.RuoloEnum>.GetValues(MDC.Models.IdentityModels.RuoloEnum.Admin); /*Enum.GetValues(typeof(MDC.Models.Ruolo));*/
+    var roleList = MDC.Util.EnumHelper<MDC.Models.IdentityModels.RuoloEnum>.GetValues(MDC.Models.IdentityModels.RuoloEnum.Admin); /*Enum.GetValues(typeof(MDC.Models.Ruolo));*/
 
     List<SelectListItem> listItems = new List<SelectListItem>();
 
@@ -55,7 +55,7 @@
     {
         listItems.Add(new SelectListItem
         {
-            Text = MDC.Helper.EnumHelper<MDC.Models.IdentityModels.RuoloEnum >.GetDisplayValue(role),
+            Text = MDC.Util.EnumHelper<MDC.Models.IdentityModels.RuoloEnum >.GetDisplayValue(role),
             //Text = role.ToString(),
             Value = role.ToString()
         });

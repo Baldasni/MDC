@@ -24,16 +24,14 @@ namespace MDC
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/MdcSite.css"));
 
-            bundles.Add(new StyleBundle("~/bundles/css/subMenu").Include(
-                      "~/Content/subMenu.css"));
+            bundles.Add(new StyleBundle("~/bundles/css/MdcSubMenu").Include(
+                      "~/Content/MdcSubMenu.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/js/subMenu").Include(
-                      "~/Scripts/subMenu.js"));
+            bundles.Add(new ScriptBundle("~/bundles/js/MdcSubMenu").Include(
+                      "~/Scripts/MdcSubMenu.js"));
 
-            bundles.Add(new StyleBundle("~/bundles/ListaUtenti/css").Include(
-          "~/DataTables/datatables.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/popper").Include(
           "~/Scripts/popper.js"));
@@ -41,6 +39,14 @@ namespace MDC
             bundles.Add(new ScriptBundle("~/bundles/ListaUtenti/js").Include(
           "~/DataTables/datatables.min.js",
           "~/Scripts/ListaUtenti.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/js/bootstrap.table").Include(
+   "~/Scripts/bootstrap-table.js",
+   "~/Scripts/moment.min.js"
+   ));
+
+            bundles.Add(new StyleBundle("~/Content/css/bootstrap.table").Include(
+               "~/Content/bootstrap-table.css"));
 
         }
     }

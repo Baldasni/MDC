@@ -10,31 +10,85 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Descrizione)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Provincia.Sigla)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descrizione)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Provincia.Sigla)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdComune }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdComune }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdComune })
-        </td>
-    </tr>
+@section css{
+    @*@Styles.Render("~/Content/css/bootstrap.table")*@
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css" />
 }
+@section scripts {
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/locale/bootstrap-table-it-IT.min.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.7.0/bootstrap-table.min.js"></script>*@
+    <script type="text/javascript">
+                //$(function () {
+                //    $("#myTable").bootstrapTable({
+                //        url: '/TabellaComune/GetComuni',
+                //        method: 'get',
+                //        pageSize: 10,
+                //        pageNumber: 1,
+                //        pagination: true,
+                //        columns: [
+                //            {
+                //                field: 'Provincia',
+                //                title: 'Provincia',
+                //                sortable: true
+                //            },
+                //            {
+                //                field: 'Descrizione',
+                //                title: 'Comune',
+                //                sortable: true
+                //            }
+                //        ]
+                //    });
+                //});
+    </script>
+}
+<div class="container">
+    <br />
+    <div class="row">
+        <table id="myTable"
+               data-toggle="table"
+               data-pagination="true"
+               data-search="true"
+               data-url="/TabellaComune/GetComuni"
+               data-method="get">
+            <thead>
+                <tr>
+                    <th data-field="Provincia" data-sortable="true">ProvinciaTH</th>
+                    <th data-field="Descrizione" data-sortable="true">ComuneTH</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@*<table class="table" id="myTable">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descrizione)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Provincia.Sigla)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descrizione)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Provincia.Sigla)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IdComune }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IdComune }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IdComune })
+                </td>
+            </tr>
+        }
+
+    </table>*@

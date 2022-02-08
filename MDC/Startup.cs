@@ -17,6 +17,7 @@ namespace MDC
         {
             ConfigureAuth(app);
             CreateRolesandUsers(app);
+            app.MapSignalR();
         }
 
         private void CreateRolesandUsers(IAppBuilder app)

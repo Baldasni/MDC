@@ -57,7 +57,7 @@
                     </td>
                     <td>
                         @String.Join(",", item.AspNetRoles.Select(x => x == null ? "" :
-                             MDC.Helper.EnumHelper<MDC.Models.IdentityModels.RuoloEnum>.GetDisplayValue(MDC.Helper.EnumHelper<MDC.Models.IdentityModels.RuoloEnum>.Parse(x.Name))).ToArray())
+                             MDC.Util.EnumHelper<MDC.Models.IdentityModels.RuoloEnum>.GetDisplayValue(MDC.Util.EnumHelper<MDC.Models.IdentityModels.RuoloEnum>.Parse(x.Name))).ToArray())
                     </td>
                     <td>
                         @if (Request.IsAuthenticated

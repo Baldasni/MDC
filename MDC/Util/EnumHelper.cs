@@ -4,7 +4,7 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace MDC.Helper
+namespace MDC.Util
 {
     public static class EnumHelper<T>
     where T : struct, Enum // This constraint requires C# 7.3 or later.
