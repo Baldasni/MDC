@@ -1,11 +1,73 @@
 ﻿@{
-    ViewBag.Title = "This section is under construction";
+    ViewBag.Title = "Dettaglio Anagrafica Mario Rossi";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
-<div class="row">
-    <div class="col-sm-12 text-center">
-        <img class="img-fluid" src="~/Content/images/underConstruction.png" alt="This section is under construction" />
+<ul class="nav nav-tabs nav-fill" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" role="tab" href="#datianagrafici">Dati anagrafici</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" role="tab" href="#pratiche">Pratiche</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" role="tab" href="#consulenze">Consulenze</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link disabled" data-toggle="tab" role="tab" href="#">Rinnovi</a>
+    </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="datianagrafici" role="tabpanel" aria-labelledby="home-tab">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputNome">Nome</label>
+                    <input type="text" class="form-control" id="inputNome" placeholder="Nome">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputCognome">Cognome</label>
+                    <input type="text" class="form-control" id="inputCognome" placeholder="Cognome">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress">Indirizzo di residenza</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="Indirizzo di residenza">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCity">Città</label>
+                    <input type="text" class="form-control" id="inputCity">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputState">Regione</label>
+                    <select id="inputState" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputZip">CAP</label>
+                    <input type="text" class="form-control" id="inputZip">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        Check me out
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Salva</button>
+        </form>        
+    </div>
+    <div class="tab-pane fade" id="pratiche" role="tabpanel" aria-labelledby="profile-tab">
+        ... Lista Pratiche ...
+    </div>
+    <div class="tab-pane fade" id="consulenze" role="tabpanel" aria-labelledby="contact-tab">
+        ... Lista Consulenze ...
     </div>
 </div>

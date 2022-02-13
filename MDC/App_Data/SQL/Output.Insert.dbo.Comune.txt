@@ -1,4 +1,4 @@
-Il contesto di database è stato sostituito con 'DatabaseMDC'.
+Il contesto di database è stato sostituito con 'DatabaseMdc'.
 
 (Righe interessate: 1)
 
