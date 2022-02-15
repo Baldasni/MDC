@@ -1,0 +1,62 @@
+﻿@model MDC.Models.ViewModels.ListaSociViewModel
+
+@{
+    ViewBag.Title = "Lista Soci";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista Soci</h2>
+<div class="alert alert-primary" role="alert">
+    Campi di ricerca:
+    @if (!String.IsNullOrWhiteSpace(Model.Cognome))
+    {
+        <span class="badge badge-primary"> Cognome = @Html.DisplayFor(model => model.Cognome)</span>
+    }
+    @if (!String.IsNullOrWhiteSpace(Model.Nome))
+    {
+        <span class="badge badge-primary">Nome = @Html.DisplayFor(model => model.Nome)</span>
+    }
+
+</div>
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Soci.GetEnumerator().Current.IdSocio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Soci.GetEnumerator().Current.CodiceFiscale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Soci.GetEnumerator().Current.Cognome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Soci.GetEnumerator().Current.Nome)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ((MDC.Models.ViewModels.ListaSociViewModel)Model).Soci)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdSocio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodiceFiscale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cognome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.ActionLink("Dettagli", "Detaggli", new { id = item.IdSocio }) |
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Torna alla Ricerca", "Ricerca", "GestioneSoci")

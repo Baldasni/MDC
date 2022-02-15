@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace MDC.Controllers
 {
+    [Authorize]
     public class GestioneSociController : Controller
     {
         private DatabaseContext db = new DatabaseContext();
@@ -25,18 +26,26 @@ namespace MDC.Controllers
             if (!String.IsNullOrEmpty(rsVM.CodiceFiscale))
             {
                 string guid = CercaGuidFromCodFisc(rsVM.CodiceFiscale);
-                RedirectToAction("VisualizzaSocio", guid);
+                if (String.IsNullOrEmpty(guid))
+                {
+                    ModelState.AddModelError("CodiceFiscale", "Codice Fiscale non trovato in archivio");
+                    return View(rsVM);
+                }
+                return RedirectToAction("VisualizzaSocio", guid);
             }
             else
             {
                 if (!string.IsNullOrEmpty(rsVM.Cognome) && !String.IsNullOrEmpty(rsVM.Nome))
-                    RedirectToAction("ListaSoci", "GestioneSoci", new { cognome = rsVM.Cognome, nome = rsVM.Nome });
+                    return RedirectToAction("ListaSoci", "GestioneSoci", new { cognome = rsVM.Cognome, nome = rsVM.Nome });
                 else if (!string.IsNullOrEmpty(rsVM.Cognome))
-                    RedirectToAction("ListaSoci", "GestioneSoci", new { cognome = rsVM.Cognome });
+                    return RedirectToAction("ListaSoci", "GestioneSoci", new { cognome = rsVM.Cognome });
                 else if (!string.IsNullOrEmpty(rsVM.Nome))
-                    RedirectToAction("ListaSoci", "GestioneSoci", new { nome = rsVM.Nome });
+                    return RedirectToAction("ListaSoci", "GestioneSoci", new { nome = rsVM.Nome });
                 else
+                {
+                    //ModelState.AddModelError("", "Inserire almento un valore");
                     rsVM.MessaggioErrore = "Inserire almento un valore";
+                }
             }
             return View(rsVM);
         }
@@ -47,14 +56,32 @@ namespace MDC.Controllers
             lsVM.Cognome = cognome;
             lsVM.Nome = nome;
 
-            lsVM.Soci = db.Soci.Where(s => s.Cognome == cognome && s.Nome == nome);
+            if (String.IsNullOrEmpty(cognome) && string.IsNullOrEmpty(nome))
+            {
+                lsVM.Soci = new List<Socio>();
+            }
+            else
+            {
+                IQueryable<Socio> soci = null;
+                if (string.IsNullOrEmpty(cognome))
+                    soci = db.Soci.Where(s => s.Cognome.Contains(cognome));
 
+                if (string.IsNullOrEmpty(nome))
+                    if (soci == null)
+                        soci = db.Soci.Where(s => s.Nome.Contains(nome));
+                    else
+                        soci = soci.Where(s => s.Nome.Contains(nome));
+
+                lsVM.Soci = soci.ToList<Socio>();
+            }
             return View(lsVM);
         }
         private string CercaGuidFromCodFisc(string codFisc)
         {
             var socio = db.Soci.Where(s => s.CodiceFiscale == codFisc);
             //return View(comuni.ToList());
+
+            if (socio.FirstOrDefault() == null) return null;
 
             return socio.FirstOrDefault().IdSocio.ToString();
         }

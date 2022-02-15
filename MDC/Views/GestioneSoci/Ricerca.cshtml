@@ -10,8 +10,8 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
 
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
     <hr />
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -45,4 +45,4 @@
         </div>
     </div>
 
-    }
+}

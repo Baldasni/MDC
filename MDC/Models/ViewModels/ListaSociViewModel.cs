@@ -16,6 +16,6 @@ namespace MDC.Models.ViewModels
 
         public String Nome { get; set; }
 
-        public ICollection<Socio> Soci { get; set; }
+        public IEnumerable<Socio> Soci { get; set; }
     }
 }
