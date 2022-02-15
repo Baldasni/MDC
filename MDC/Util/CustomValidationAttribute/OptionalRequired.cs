@@ -54,7 +54,7 @@ namespace MDC.Util.CustomValidationAttribute
                 var propertyValue = property.GetValue(validationContext.ObjectInstance);
 
                 // When the value is not null and not empty (very simple validation)
-                if (propertyValue != null && String.IsNullOrEmpty(propertyValue.ToString()))
+                if (propertyValue != null && !String.IsNullOrEmpty(propertyValue.ToString()))
                     validPropertyValues++;
             }
 

@@ -23,28 +23,31 @@ namespace MDC.Controllers
         [HttpPost]
         public ActionResult Ricerca(RicercaSocioViewModel rsVM)
         {
-            if (!String.IsNullOrEmpty(rsVM.CodiceFiscale))
+            if (ModelState.IsValid)
             {
-                string guid = CercaGuidFromCodFisc(rsVM.CodiceFiscale);
-                if (String.IsNullOrEmpty(guid))
+                if (!String.IsNullOrEmpty(rsVM.CodiceFiscale))
                 {
-                    ModelState.AddModelError("CodiceFiscale", "Codice Fiscale non trovato in archivio");
-                    return View(rsVM);
+                    string guid = CercaGuidFromCodFisc(rsVM.CodiceFiscale);
+                    if (String.IsNullOrEmpty(guid))
+                    {
+                        ModelState.AddModelError("CodiceFiscale", "Codice Fiscale non trovato in archivio");
+                        return View(rsVM);
+                    }
+                    return RedirectToAction("VisualizzaSocio", guid);
                 }
-                return RedirectToAction("VisualizzaSocio", guid);
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(rsVM.Cognome) && !String.IsNullOrEmpty(rsVM.Nome))
-                    return RedirectToAction("ListaSoci", "GestioneSoci", new { cognome = rsVM.Cognome, nome = rsVM.Nome });
-                else if (!string.IsNullOrEmpty(rsVM.Cognome))
-                    return RedirectToAction("ListaSoci", "GestioneSoci", new { cognome = rsVM.Cognome });
-                else if (!string.IsNullOrEmpty(rsVM.Nome))
-                    return RedirectToAction("ListaSoci", "GestioneSoci", new { nome = rsVM.Nome });
                 else
                 {
-                    //ModelState.AddModelError("", "Inserire almento un valore");
-                    rsVM.MessaggioErrore = "Inserire almento un valore";
+                    if (!string.IsNullOrEmpty(rsVM.Cognome) && !String.IsNullOrEmpty(rsVM.Nome))
+                        return RedirectToAction("ListaSoci", "GestioneSoci", new { cognome = rsVM.Cognome, nome = rsVM.Nome });
+                    else if (!string.IsNullOrEmpty(rsVM.Cognome))
+                        return RedirectToAction("ListaSoci", "GestioneSoci", new { cognome = rsVM.Cognome });
+                    else if (!string.IsNullOrEmpty(rsVM.Nome))
+                        return RedirectToAction("ListaSoci", "GestioneSoci", new { nome = rsVM.Nome });
+                    else
+                    {
+                        //ModelState.AddModelError("", "Inserire almento un valore");
+                        rsVM.MessaggioErrore = "Inserire almento un valore";
+                    }
                 }
             }
             return View(rsVM);
