@@ -205,6 +205,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\ListaSociViewModel.cs" />
+    <Compile Include="Models\ViewModels\RicercaSocioViewModel.cs" />
+    <Compile Include="Models\ViewModels\SocioViewModel.cs" />
     <Compile Include="Util\EnumHelper.cs" />
     <Compile Include="Util\Functions.cs" />
     <Compile Include="Hubs\ProgressHub.cs" />
