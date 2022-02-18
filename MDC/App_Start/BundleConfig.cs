@@ -29,8 +29,9 @@ namespace MDC
             bundles.Add(new ScriptBundle("~/bundles/js/popper").Include(
                         "~/Scripts/popper.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/js/bootstrap.table").Include(
-                       "~/Scripts/bootstrap-table.js",
+            bundles.Add(new ScriptBundle("~/bundles/js/bootstrap-table").Include(
+                       "~/github/bootstrap-table-1.19.1/dist/bootstrap-table.min.js",
+                       "~/github/bootstrap-table-1.19.1/dist/locale/bootstrap-table-it-IT.min.js",
                        "~/Scripts/moment.min.js"
                        ));
 
@@ -39,10 +40,10 @@ namespace MDC
                       "~/Content/Mdc*"));
 
             bundles.Add(new StyleBundle("~/bundles/css/bootstrap").Include(
-                      "~/Content/bootstrap-table.css"));
+                      "~/Content/bootstrap.min.css"));
 
             bundles.Add(new StyleBundle("~/bundles/css/bootstrap-table").Include(
-                      "~/Content/bootstrap.css"));
+                      "~/github/bootstrap-table-1.19.1/dist/bootstrap-table.min.css"));
         }
     }
 }
