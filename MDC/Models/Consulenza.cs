@@ -23,6 +23,7 @@ namespace MDC.Models
         public string Nominativo { get; set; }
         public string Email { get; set; }
         public Nullable<int> IdComune { get; set; }
+        public string Telefono { get; set; }
     
         public virtual Comune Comune { get; set; }
         public virtual Socio Socio { get; set; }

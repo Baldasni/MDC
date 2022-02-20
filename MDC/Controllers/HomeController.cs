@@ -12,7 +12,6 @@ namespace MDC.Controllers
     {
         public ActionResult Index()
         {
-            //return RedirectToAction("Ricerca", "GestioneSoci");
             return View();
         }
 

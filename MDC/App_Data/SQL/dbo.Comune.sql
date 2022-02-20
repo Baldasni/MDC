@@ -33,6 +33,7 @@ CREATE TABLE [dbo].[Comune]
 (
     [IdComune]        			INTEGER  NOT NULL IDENTITY(1,1),
     [IdProvincia]     			INTEGER  NOT NULL DEFAULT 0,
+	[CodiceCatastale]			NVARCHAR (4)     NOT NULL,
 	[Descrizione] 		        NVARCHAR (50)     NOT NULL
     CONSTRAINT [PK_Comune] PRIMARY KEY CLUSTERED ([IdComune])
 

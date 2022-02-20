@@ -32,6 +32,7 @@ namespace MDC.Models
         public int IdStatoPratica { get; set; }
         [Display(Name = "Descrizione Riscontro")]
         public string DescrizioneRiscontro { get; set; }
+        [Display(Name = "Note")]
+        public string Note { get; set; }
     }
-
 }

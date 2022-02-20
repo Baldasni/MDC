@@ -22,6 +22,7 @@ namespace MDC.Models
         public string DescrizionePratica { get; set; }
         public int IdStatoPratica { get; set; }
         public string DescrizioneRiscontro { get; set; }
+        public string Note { get; set; }
     
         public virtual Socio Socio { get; set; }
         public virtual Sportello Sportello { get; set; }

@@ -12,6 +12,8 @@ GO
 		ALTER TABLE [dbo].[Socio] DROP CONSTRAINT [FK_Socio_Comune_R];
 	IF EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'dbo.FK_Comune_Provincia'))
 		ALTER TABLE [dbo].[Comune] DROP CONSTRAINT [FK_Comune_Provincia];
+	IF EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'dbo.FK_Provincia_Regione'))
+		ALTER TABLE [dbo].[Comune] DROP CONSTRAINT [FK_Provincia_Regione];
 	IF EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'dbo.FK_Rinnovi_Socio'))
 		ALTER TABLE [dbo].[Rinnovo] DROP CONSTRAINT [FK_Rinnovi_Socio];
 	IF EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'dbo.FK_Pratica_Socio'))
@@ -38,6 +40,8 @@ GO
 		DROP TABLE [dbo].[Pratica];
 	IF EXISTS(SELECT * FROM sys.tables WHERE SCHEMA_NAME(schema_id) LIKE 'dbo' AND name like 'Provincia') 
 		DROP TABLE [dbo].[Provincia];
+	IF EXISTS(SELECT * FROM sys.tables WHERE SCHEMA_NAME(schema_id) LIKE 'dbo' AND name like 'Regione') 
+		DROP TABLE [dbo].[Regione];
 	IF EXISTS(SELECT * FROM sys.tables WHERE SCHEMA_NAME(schema_id) LIKE 'dbo' AND name like 'Rinnovo') 
 		DROP TABLE [dbo].[Rinnovo];
 	IF EXISTS(SELECT * FROM sys.tables WHERE SCHEMA_NAME(schema_id) LIKE 'dbo' AND name like 'Socio') 
@@ -49,7 +53,5 @@ GO
 	IF EXISTS(SELECT * FROM sys.tables WHERE SCHEMA_NAME(schema_id) LIKE 'dbo' AND name like 'StatoPratica') 
 		DROP TABLE [dbo].[StatoPratica];
 
-	
-	
 GO
 

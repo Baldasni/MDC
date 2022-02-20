@@ -25,6 +25,7 @@ namespace MDC.Models
         public int IdComune { get; set; }
         public int IdProvincia { get; set; }
         public string Descrizione { get; set; }
+        public string CodiceCatastale { get; set; }
     
         public virtual Provincia Provincia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

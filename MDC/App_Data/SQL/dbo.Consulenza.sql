@@ -15,6 +15,7 @@ CREATE TABLE [dbo].[Consulenza]
     [DescrizioneConsulenza] NVARCHAR (200)    NOT NULL,
     [IdTipologiaContatto]   INTEGER			      NULL,
 	[Nominativo] 		    NVARCHAR (50)         NULL,
+	[Telefono] 				NVARCHAR (50)         NULL,
 	[Email] 			    NVARCHAR (50)         NULL,
 	[IdComune] 			    INTEGER               NULL
     CONSTRAINT [PK_Consulenza] PRIMARY KEY CLUSTERED ([IdConsulenza])

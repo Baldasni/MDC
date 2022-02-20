@@ -1,0 +1,842 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A217D9D2-6FA7-4036-BDF6-059940763379}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MDC</RootNamespace>
+    <AssemblyName>MDC</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44362</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>4.3</TypeScriptToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.3\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.3\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.2.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.2.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.2.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.2.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.2.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.2.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.2.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\GestioneConsulenzeController.cs" />
+    <Compile Include="Controllers\GestionePraticheController.cs" />
+    <Compile Include="Controllers\GestioneReportController.cs" />
+    <Compile Include="Controllers\GestioneSociController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TabellaComuneController.cs" />
+    <Compile Include="Controllers\TabellaConsulenzaController.cs" />
+    <Compile Include="Controllers\TabellaPraticaController.cs" />
+    <Compile Include="Controllers\TabellaProvinciaController.cs" />
+    <Compile Include="Controllers\TabellaRinnovoController.cs" />
+    <Compile Include="Controllers\TabellaSocioController.cs" />
+    <Compile Include="Controllers\TabellaSportelloController.cs" />
+    <Compile Include="Controllers\TabellaStatoPraticaController.cs" />
+    <Compile Include="Controllers\TabellaTipologiaContattoController.cs" />
+    <Compile Include="Controllers\TabellaTipologiaPraticaController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Regione.cs">
+      <DependentUpon>MdcModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewModels\ListaSociViewModel.cs" />
+    <Compile Include="Models\ViewModels\RicercaSocioViewModel.cs" />
+    <Compile Include="Models\ViewModels\SocioViewModel.cs" />
+    <Compile Include="Util\EnumHelper.cs" />
+    <Compile Include="Util\Functions.cs" />
+    <Compile Include="Hubs\ProgressHub.cs" />
+    <Compile Include="Models\Comune.cs">
+      <DependentUpon>MdcModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ComuneAnnotazioni.cs" />
+    <Compile Include="Models\Consulenza.cs">
+      <DependentUpon>MdcModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ConsulenzaAnnotazioni.cs" />
+    <Compile Include="Models\IdentityModels\AccountViewModels.cs" />
+    <Compile Include="Models\Pratica.cs">
+      <DependentUpon>MdcModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PraticaAnnotazioni.cs" />
+    <Compile Include="Models\Provincia.cs">
+      <DependentUpon>MdcModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProvinciaAnnotazioni.cs" />
+    <Compile Include="Models\RegioneAnnotazioni.cs" />
+    <Compile Include="Models\Rinnovo.cs">
+      <DependentUpon>MdcModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RinnovoAnnotazioni.cs" />
+    <Compile Include="Models\Socio.cs">
+      <DependentUpon>MdcModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SocioAnnotazioni.cs" />
+    <Compile Include="Models\Sportello.cs">
+      <DependentUpon>MdcModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SportelloAnnotazioni.cs" />
+    <Compile Include="Models\StatoPratica.cs">
+      <DependentUpon>MdcModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StatoPraticaAnnotazioni.cs" />
+    <Compile Include="Models\TipologiaContatto.cs">
+      <DependentUpon>MdcModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipologiaContrattoAnnotazioni.cs" />
+    <Compile Include="Models\TipologiaPratica.cs">
+      <DependentUpon>MdcModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipologiaPraticaAnnotazioni.cs" />
+    <Compile Include="Models\ViewModels\AdminViewModel.cs" />
+    <Compile Include="Models\IdentityModels\AspNetRole.cs" />
+    <Compile Include="Models\IdentityModels\AspNetUser.cs" />
+    <Compile Include="Models\IdentityModels\AspNetUserClaim.cs" />
+    <Compile Include="Models\IdentityModels\AspNetUserLogin.cs" />
+    <Compile Include="Models\IdentityModels\IdentityModels.cs" />
+    <Compile Include="Models\ViewModels\ListaSociViewModel.cs" />
+    <Compile Include="Models\ViewModels\ManageViewModels.cs" />
+    <Compile Include="Models\MdcModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MdcModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MdcModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MdcModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MdcModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MdcModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels\RuoloEnum.cs" />
+    <Compile Include="Models\ViewModels\RicercaSocioViewModel.cs" />
+    <Compile Include="Models\ViewModels\SocioViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AspNetUserRepository.cs" />
+    <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Util\CustomValidationAttribute\OptionalRequired.cs" />
+    <Compile Include="Util\EnumHelper.cs" />
+    <Compile Include="Util\Functions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\SQL\dbo.Comune.sql" />
+    <Content Include="App_Data\SQL\dbo.Consulenza.sql" />
+    <Content Include="App_Data\SQL\dbo.DropDb.sql" />
+    <Content Include="App_Data\SQL\dbo.Pratica.sql" />
+    <Content Include="App_Data\SQL\dbo.Regione.sql" />
+    <Content Include="App_Data\SQL\dbo.Provincia.sql" />
+    <Content Include="App_Data\SQL\dbo.Rinnovo.sql" />
+    <Content Include="App_Data\SQL\dbo.Socio.sql" />
+    <Content Include="App_Data\SQL\dbo.Sportello.sql" />
+    <Content Include="App_Data\SQL\dbo.StatoPratica.sql" />
+    <Content Include="App_Data\SQL\dbo.TipologiaContatto.sql" />
+    <Content Include="App_Data\SQL\dbo.TipologiaPratica.sql" />
+    <Content Include="App_Data\SQL\Insert.dbo.Comune.sql" />
+    <Content Include="App_Data\SQL\Insert.dbo.Regione.sql" />
+    <Content Include="App_Data\SQL\Insert.dbo.Provincia.sql" />
+    <Content Include="App_Data\SQL\Insert.dbo.Sportello.sql" />
+    <Content Include="App_Data\SQL\Insert.dbo.StatoPratica.sql" />
+    <Content Include="App_Data\SQL\Insert.dbo.TipologiaContatto.sql" />
+    <Content Include="App_Data\SQL\Insert.dbo.TipologiaPratica.sql" />
+    <Content Include="App_Data\SQL\Output.Insert.dbo.Comune.txt" />
+    <Content Include="App_Data\SQL\Output.Insert.dbo.Provincia.txt" />
+    <Content Include="App_Data\SQL\Output.Insert.dbo.Sportello.txt" />
+    <Content Include="App_Data\SQL\Output.Insert.dbo.StatoPratica.txt" />
+    <Content Include="App_Data\SQL\Output.Insert.dbo.TipologiaContatto.txt" />
+    <Content Include="App_Data\SQL\Output.Insert.dbo.TipologiaPratica.txt" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\MDC.png" />
+    <Content Include="Content\images\MDCesteso.jpg" />
+    <Content Include="Content\images\MDCgrande_trasparente.jpg" />
+    <Content Include="Content\images\MDCgrande_trasparente.png" />
+    <Content Include="Content\images\MDCtrasparente.png" />
+    <Content Include="Content\images\MDCgrande.jpg" />
+    <Content Include="Content\images\underConstruction.png" />
+    <Content Include="Content\MdcBootstrapCustom.css" />
+    <Content Include="Content\MdcSideBar.css" />
+    <Content Include="Content\MdcSite.css" />
+    <Content Include="Content\MdcSubMenuDropdown.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\bootstrap-table-locale-all.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\bootstrap-table-locale-all.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\bootstrap-table-vue.esm.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\bootstrap-table-vue.esm.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\bootstrap-table-vue.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\bootstrap-table-vue.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\bootstrap-table.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\bootstrap-table.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\bootstrap-table.min.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\bootstrap-table.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\addrbar\bootstrap-table-addrbar.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\addrbar\bootstrap-table-addrbar.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\auto-refresh\bootstrap-table-auto-refresh.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\auto-refresh\bootstrap-table-auto-refresh.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\cookie\bootstrap-table-cookie.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\cookie\bootstrap-table-cookie.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\copy-rows\bootstrap-table-copy-rows.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\copy-rows\bootstrap-table-copy-rows.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\custom-view\bootstrap-table-custom-view.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\custom-view\bootstrap-table-custom-view.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\defer-url\bootstrap-table-defer-url.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\defer-url\bootstrap-table-defer-url.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\editable\bootstrap-table-editable.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\editable\bootstrap-table-editable.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\export\bootstrap-table-export.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\export\bootstrap-table-export.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\filter-control\bootstrap-table-filter-control.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\filter-control\bootstrap-table-filter-control.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\filter-control\bootstrap-table-filter-control.min.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\filter-control\bootstrap-table-filter-control.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\filter-control\utils.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\filter-control\utils.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\fixed-columns\bootstrap-table-fixed-columns.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\fixed-columns\bootstrap-table-fixed-columns.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\fixed-columns\bootstrap-table-fixed-columns.min.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\fixed-columns\bootstrap-table-fixed-columns.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\group-by-v2\bootstrap-table-group-by.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\group-by-v2\bootstrap-table-group-by.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\group-by-v2\bootstrap-table-group-by.min.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\group-by-v2\bootstrap-table-group-by.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\i18n-enhance\bootstrap-table-i18n-enhance.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\i18n-enhance\bootstrap-table-i18n-enhance.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\key-events\bootstrap-table-key-events.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\key-events\bootstrap-table-key-events.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\mobile\bootstrap-table-mobile.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\mobile\bootstrap-table-mobile.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\multiple-sort\bootstrap-table-multiple-sort.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\multiple-sort\bootstrap-table-multiple-sort.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\page-jump-to\bootstrap-table-page-jump-to.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\page-jump-to\bootstrap-table-page-jump-to.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\page-jump-to\bootstrap-table-page-jump-to.min.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\page-jump-to\bootstrap-table-page-jump-to.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\pipeline\bootstrap-table-pipeline.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\pipeline\bootstrap-table-pipeline.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\print\bootstrap-table-print.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\print\bootstrap-table-print.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\reorder-columns\bootstrap-table-reorder-columns.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\reorder-columns\bootstrap-table-reorder-columns.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\reorder-rows\bootstrap-table-reorder-rows.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\reorder-rows\bootstrap-table-reorder-rows.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\reorder-rows\bootstrap-table-reorder-rows.min.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\reorder-rows\bootstrap-table-reorder-rows.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\resizable\bootstrap-table-resizable.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\resizable\bootstrap-table-resizable.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\sticky-header\bootstrap-table-sticky-header.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\sticky-header\bootstrap-table-sticky-header.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\sticky-header\bootstrap-table-sticky-header.min.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\sticky-header\bootstrap-table-sticky-header.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\toolbar\bootstrap-table-toolbar.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\toolbar\bootstrap-table-toolbar.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\treegrid\bootstrap-table-treegrid.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\extensions\treegrid\bootstrap-table-treegrid.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-af-ZA.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-af-ZA.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ar-SA.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ar-SA.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-bg-BG.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-bg-BG.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ca-ES.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ca-ES.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-cs-CZ.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-cs-CZ.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-da-DK.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-da-DK.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-de-DE.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-de-DE.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-el-GR.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-el-GR.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-en-US.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-en-US.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-AR.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-AR.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-CL.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-CL.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-CR.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-CR.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-ES.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-ES.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-MX.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-MX.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-NI.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-NI.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-SP.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-es-SP.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-et-EE.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-et-EE.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-eu-EU.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-eu-EU.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-fa-IR.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-fa-IR.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-fi-FI.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-fi-FI.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-fr-BE.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-fr-BE.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-fr-CH.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-fr-CH.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-fr-FR.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-fr-FR.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-fr-LU.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-fr-LU.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-he-IL.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-he-IL.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-hr-HR.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-hr-HR.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-hu-HU.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-hu-HU.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-id-ID.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-id-ID.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-it-IT.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-it-IT.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ja-JP.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ja-JP.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ka-GE.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ka-GE.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ko-KR.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ko-KR.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ms-MY.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ms-MY.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-nb-NO.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-nb-NO.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-nl-BE.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-nl-BE.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-nl-NL.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-nl-NL.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-pl-PL.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-pl-PL.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-pt-BR.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-pt-BR.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-pt-PT.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-pt-PT.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ro-RO.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ro-RO.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ru-RU.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ru-RU.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-sk-SK.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-sk-SK.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-sr-Cyrl-RS.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-sr-Cyrl-RS.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-sr-Latn-RS.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-sr-Latn-RS.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-sv-SE.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-sv-SE.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-th-TH.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-th-TH.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-tr-TR.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-tr-TR.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-uk-UA.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-uk-UA.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ur-PK.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-ur-PK.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-uz-Latn-UZ.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-uz-Latn-UZ.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-vi-VN.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-vi-VN.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-zh-CN.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-zh-CN.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-zh-TW.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\locale\bootstrap-table-zh-TW.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\bootstrap-table\bootstrap-table.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\bootstrap-table\bootstrap-table.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\bootstrap-table\bootstrap-table.min.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\bootstrap-table\bootstrap-table.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\bootstrap-table\fonts\bootstrap-table.svg" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\bulma\bootstrap-table-bulma.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\bulma\bootstrap-table-bulma.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\bulma\bootstrap-table-bulma.min.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\bulma\bootstrap-table-bulma.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\foundation\bootstrap-table-foundation.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\foundation\bootstrap-table-foundation.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\foundation\bootstrap-table-foundation.min.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\foundation\bootstrap-table-foundation.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\materialize\bootstrap-table-materialize.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\materialize\bootstrap-table-materialize.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\materialize\bootstrap-table-materialize.min.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\materialize\bootstrap-table-materialize.min.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\semantic\bootstrap-table-semantic.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\semantic\bootstrap-table-semantic.js" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\semantic\bootstrap-table-semantic.min.css" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\semantic\bootstrap-table-semantic.min.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\MdcModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MdcModel.edmx</DependentUpon>
+      <LastGenOutput>MdcModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\MdcModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MdcModel.edmx</DependentUpon>
+      <LastGenOutput>MdcModel.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\MdcModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MdcModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MdcModel.edmx.diagram">
+      <DependentUpon>MdcModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SQL\EseguiDDL-Drop.bat" />
+    <Content Include="App_Data\SQL\EseguiDDL.bat" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\bootstrap-table\fonts\bootstrap-table.eot" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\bootstrap-table\fonts\bootstrap-table.ttf" />
+    <Content Include="github\bootstrap-table-1.19.1\dist\themes\bootstrap-table\fonts\bootstrap-table.woff" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\index.js.flow" />
+    <Content Include="Scripts\jquery-3.6.0.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.0.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.3.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.3.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MdcSideBar.js" />
+    <Content Include="Scripts\MdcSignalR.js" />
+    <Content Include="Scripts\MdcSubMenuDropdown.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\src\index.js" />
+    <Content Include="Scripts\src\methods\defaults.js" />
+    <Content Include="Scripts\src\methods\destroy.js" />
+    <Content Include="Scripts\src\methods\disableEventListeners.js" />
+    <Content Include="Scripts\src\methods\enableEventListeners.js" />
+    <Content Include="Scripts\src\methods\placements.js" />
+    <Content Include="Scripts\src\methods\update.js" />
+    <Content Include="Scripts\src\modifiers\applyStyle.js" />
+    <Content Include="Scripts\src\modifiers\arrow.js" />
+    <Content Include="Scripts\src\modifiers\computeStyle.js" />
+    <Content Include="Scripts\src\modifiers\flip.js" />
+    <Content Include="Scripts\src\modifiers\hide.js" />
+    <Content Include="Scripts\src\modifiers\index.js" />
+    <Content Include="Scripts\src\modifiers\inner.js" />
+    <Content Include="Scripts\src\modifiers\keepTogether.js" />
+    <Content Include="Scripts\src\modifiers\offset.js" />
+    <Content Include="Scripts\src\modifiers\preventOverflow.js" />
+    <Content Include="Scripts\src\modifiers\shift.js" />
+    <Content Include="Scripts\src\utils\clockwise.js" />
+    <Content Include="Scripts\src\utils\computeAutoPlacement.js" />
+    <Content Include="Scripts\src\utils\debounce.js" />
+    <Content Include="Scripts\src\utils\find.js" />
+    <Content Include="Scripts\src\utils\findCommonOffsetParent.js" />
+    <Content Include="Scripts\src\utils\findIndex.js" />
+    <Content Include="Scripts\src\utils\getBordersSize.js" />
+    <Content Include="Scripts\src\utils\getBoundaries.js" />
+    <Content Include="Scripts\src\utils\getBoundingClientRect.js" />
+    <Content Include="Scripts\src\utils\getClientRect.js" />
+    <Content Include="Scripts\src\utils\getFixedPositionOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetRect.js" />
+    <Content Include="Scripts\src\utils\getOffsetRectRelativeToArbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getOppositePlacement.js" />
+    <Content Include="Scripts\src\utils\getOppositeVariation.js" />
+    <Content Include="Scripts\src\utils\getOuterSizes.js" />
+    <Content Include="Scripts\src\utils\getParentNode.js" />
+    <Content Include="Scripts\src\utils\getPopperOffsets.js" />
+    <Content Include="Scripts\src\utils\getReferenceNode.js" />
+    <Content Include="Scripts\src\utils\getReferenceOffsets.js" />
+    <Content Include="Scripts\src\utils\getRoot.js" />
+    <Content Include="Scripts\src\utils\getRoundedOffsets.js" />
+    <Content Include="Scripts\src\utils\getScroll.js" />
+    <Content Include="Scripts\src\utils\getScrollParent.js" />
+    <Content Include="Scripts\src\utils\getStyleComputedProperty.js" />
+    <Content Include="Scripts\src\utils\getSupportedPropertyName.js" />
+    <Content Include="Scripts\src\utils\getViewportOffsetRectRelativeToArtbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getWindow.js" />
+    <Content Include="Scripts\src\utils\getWindowSizes.js" />
+    <Content Include="Scripts\src\utils\includeScroll.js" />
+    <Content Include="Scripts\src\utils\index.js" />
+    <Content Include="Scripts\src\utils\isBrowser.js" />
+    <Content Include="Scripts\src\utils\isFixed.js" />
+    <Content Include="Scripts\src\utils\isFunction.js" />
+    <Content Include="Scripts\src\utils\isIE.js" />
+    <Content Include="Scripts\src\utils\isModifierEnabled.js" />
+    <Content Include="Scripts\src\utils\isModifierRequired.js" />
+    <Content Include="Scripts\src\utils\isNumeric.js" />
+    <Content Include="Scripts\src\utils\isOffsetContainer.js" />
+    <Content Include="Scripts\src\utils\removeEventListeners.js" />
+    <Content Include="Scripts\src\utils\runModifiers.js" />
+    <Content Include="Scripts\src\utils\setAttributes.js" />
+    <Content Include="Scripts\src\utils\setStyles.js" />
+    <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Views\Admin\AddUtente.cshtml" />
+    <Content Include="Views\Admin\EditUtente.cshtml" />
+    <Content Include="Views\Admin\ListaUtenti.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Test\Identita.cshtml" />
+    <Content Include="Views\Test\NonIdentita.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper.js.flow" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\TabellaSportello\Create.cshtml" />
+    <Content Include="Views\TabellaSportello\Delete.cshtml" />
+    <Content Include="Views\TabellaSportello\Details.cshtml" />
+    <Content Include="Views\TabellaSportello\Edit.cshtml" />
+    <Content Include="Views\TabellaSportello\Index.cshtml" />
+    <Content Include="Views\Admin\ListaTabelle.cshtml" />
+    <Content Include="Views\TabellaTipologiaPratica\Create.cshtml" />
+    <Content Include="Views\TabellaTipologiaPratica\Delete.cshtml" />
+    <Content Include="Views\TabellaTipologiaPratica\Details.cshtml" />
+    <Content Include="Views\TabellaTipologiaPratica\Edit.cshtml" />
+    <Content Include="Views\TabellaTipologiaPratica\Index.cshtml" />
+    <Content Include="Views\TabellaPratica\Create.cshtml" />
+    <Content Include="Views\TabellaPratica\Delete.cshtml" />
+    <Content Include="Views\TabellaPratica\Details.cshtml" />
+    <Content Include="Views\TabellaPratica\Edit.cshtml" />
+    <Content Include="Views\TabellaPratica\Index.cshtml" />
+    <Content Include="Views\TabellaTipologiaContatto\Create.cshtml" />
+    <Content Include="Views\TabellaTipologiaContatto\Delete.cshtml" />
+    <Content Include="Views\TabellaTipologiaContatto\Details.cshtml" />
+    <Content Include="Views\TabellaTipologiaContatto\Edit.cshtml" />
+    <Content Include="Views\TabellaTipologiaContatto\Index.cshtml" />
+    <Content Include="Views\TabellaStatoPratica\Create.cshtml" />
+    <Content Include="Views\TabellaStatoPratica\Delete.cshtml" />
+    <Content Include="Views\TabellaStatoPratica\Details.cshtml" />
+    <Content Include="Views\TabellaStatoPratica\Edit.cshtml" />
+    <Content Include="Views\TabellaStatoPratica\Index.cshtml" />
+    <Content Include="Views\TabellaSocio\Create.cshtml" />
+    <Content Include="Views\TabellaSocio\Delete.cshtml" />
+    <Content Include="Views\TabellaSocio\Details.cshtml" />
+    <Content Include="Views\TabellaSocio\Edit.cshtml" />
+    <Content Include="Views\TabellaSocio\Index.cshtml" />
+    <Content Include="Views\TabellaProvincia\Create.cshtml" />
+    <Content Include="Views\TabellaProvincia\Delete.cshtml" />
+    <Content Include="Views\TabellaProvincia\Details.cshtml" />
+    <Content Include="Views\TabellaProvincia\Edit.cshtml" />
+    <Content Include="Views\TabellaProvincia\Index.cshtml" />
+    <Content Include="Views\TabellaComune\Create.cshtml" />
+    <Content Include="Views\TabellaComune\Delete.cshtml" />
+    <Content Include="Views\TabellaComune\Details.cshtml" />
+    <Content Include="Views\TabellaComune\Edit.cshtml" />
+    <Content Include="Views\TabellaComune\Index.cshtml" />
+    <Content Include="Views\TabellaRinnovo\Create.cshtml" />
+    <Content Include="Views\TabellaRinnovo\Delete.cshtml" />
+    <Content Include="Views\TabellaRinnovo\Details.cshtml" />
+    <Content Include="Views\TabellaRinnovo\Edit.cshtml" />
+    <Content Include="Views\TabellaRinnovo\Index.cshtml" />
+    <Content Include="Views\TabellaConsulenza\Create.cshtml" />
+    <Content Include="Views\TabellaConsulenza\Delete.cshtml" />
+    <Content Include="Views\TabellaConsulenza\Details.cshtml" />
+    <Content Include="Views\TabellaConsulenza\Edit.cshtml" />
+    <Content Include="Views\TabellaConsulenza\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Currency2.cshtml" />
+    <Content Include="Views\GestioneSoci\Ricerca.cshtml" />
+    <Content Include="Views\GestioneReport\ReportAnno.cshtml" />
+    <Content Include="Views\GestioneReport\ReportSportello.cshtml" />
+    <Content Include="Views\GestioneReport\Riepilogo.cshtml" />
+    <Content Include="Views\GestioneConsulenze\Ricerca.cshtml" />
+    <Content Include="Views\GestioneConsulenze\Inserimento.cshtml" />
+    <Content Include="Views\GestionePratiche\Ricerca.cshtml" />
+    <Content Include="Views\GestionePratiche\Inserimento.cshtml" />
+    <Content Include="Views\GestioneSoci\Inserimento.cshtml" />
+    <Content Include="Views\GestioneSoci\Rinnovo.cshtml" />
+    <Content Include="Views\GestioneSoci\DatiAnagrafici.cshtml" />
+    <Content Include="Scripts\moment-with-locales.min.js.map" />
+    <Content Include="Scripts\moment.min.js.map" />
+    <Content Include="Views\Shared\_NavPartial.cshtml" />
+    <Content Include="Views\Shared\_SideBarPartial.cshtml" />
+    <Content Include="Views\GestioneSoci\ListaSoci.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55785</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44362/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Questo progetto fa riferimento a uno o più pacchetti NuGet che non sono presenti in questo computer. Usare lo strumento di ripristino dei pacchetti NuGet per scaricarli. Per altre informazioni, vedere http://go.microsoft.com/fwlink/?LinkID=322105. Il file mancante è {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

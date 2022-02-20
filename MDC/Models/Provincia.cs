@@ -23,9 +23,10 @@ namespace MDC.Models
         public int IdProvincia { get; set; }
         public string Sigla { get; set; }
         public string Descrizione { get; set; }
-        public string Regione { get; set; }
+        public int IdRegione { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comune> Comune { get; set; }
+        public virtual Regione Regione { get; set; }
     }
 }

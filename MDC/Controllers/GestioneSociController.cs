@@ -66,10 +66,10 @@ namespace MDC.Controllers
             else
             {
                 IQueryable<Socio> soci = null;
-                if (string.IsNullOrEmpty(cognome))
+                if (!string.IsNullOrEmpty(cognome))
                     soci = db.Soci.Where(s => s.Cognome.Contains(cognome));
 
-                if (string.IsNullOrEmpty(nome))
+                if (!string.IsNullOrEmpty(nome))
                     if (soci == null)
                         soci = db.Soci.Where(s => s.Nome.Contains(nome));
                     else

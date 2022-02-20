@@ -11,6 +11,7 @@
           </Key>
           <Property Name="IdComune" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdProvincia" Type="int" Nullable="false" />
+          <Property Name="CodiceCatastale" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="Descrizione" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Consulenza">
@@ -24,6 +25,7 @@
           <Property Name="DescrizioneConsulenza" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="IdTipologiaContatto" Type="int" />
           <Property Name="Nominativo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="IdComune" Type="int" />
         </EntityType>
@@ -39,6 +41,7 @@
           <Property Name="DescrizionePratica" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="IdStatoPratica" Type="int" Nullable="false" />
           <Property Name="DescrizioneRiscontro" Type="nvarchar" MaxLength="200" />
+          <Property Name="Note" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Provincia">
           <Key>
@@ -47,7 +50,14 @@
           <Property Name="IdProvincia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Sigla" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="Descrizione" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Regione" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdRegione" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Regione">
+          <Key>
+            <PropertyRef Name="IdRegione" />
+          </Key>
+          <Property Name="IdRegione" Type="int" Nullable="false" />
+          <Property Name="Descrizione" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Rinnovo">
           <Key>
@@ -215,6 +225,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Provincia_Regione">
+          <End Role="Regione" Type="Self.Regione" Multiplicity="1" />
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regione">
+              <PropertyRef Name="IdRegione" />
+            </Principal>
+            <Dependent Role="Provincia">
+              <PropertyRef Name="IdRegione" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Rinnovi_Socio">
           <End Role="Socio" Type="Self.Socio" Multiplicity="1" />
           <End Role="Rinnovo" Type="Self.Rinnovo" Multiplicity="*" />
@@ -256,6 +278,7 @@
           <EntitySet Name="Consulenza" EntityType="Self.Consulenza" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pratica" EntityType="Self.Pratica" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Regione" EntityType="Self.Regione" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rinnovo" EntityType="Self.Rinnovo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Socio" EntityType="Self.Socio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sportello" EntityType="Self.Sportello" Schema="dbo" store:Type="Tables" />
@@ -297,6 +320,10 @@
           <AssociationSet Name="FK_Pratica_TipologiaPratica" Association="Self.FK_Pratica_TipologiaPratica">
             <End Role="TipologiaPratica" EntitySet="TipologiaPratica" />
             <End Role="Pratica" EntitySet="Pratica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provincia_Regione" Association="Self.FK_Provincia_Regione">
+            <End Role="Regione" EntitySet="Regione" />
+            <End Role="Provincia" EntitySet="Provincia" />
           </AssociationSet>
           <AssociationSet Name="FK_Rinnovi_Socio" Association="Self.FK_Rinnovi_Socio">
             <End Role="Socio" EntitySet="Socio" />
@@ -374,6 +401,11 @@
             <End Role="Socio" EntitySet="Soci" />
             <End Role="Rinnovo" EntitySet="Rinnovi" />
           </AssociationSet>
+          <EntitySet Name="Regioni" EntityType="Model.Regione" />
+          <AssociationSet Name="FK_Provincia_Regione" Association="Model.FK_Provincia_Regione">
+            <End Role="Regione" EntitySet="Regioni" />
+            <End Role="Provincia" EntitySet="Province" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Comune">
           <Key>
@@ -386,6 +418,7 @@
           <NavigationProperty Name="Consulenza" Relationship="Model.FK_Consulenza_Comune" FromRole="Comune" ToRole="Consulenza" />
           <NavigationProperty Name="SocioN" Relationship="Model.FK_Socio_Comune_N" FromRole="Comune" ToRole="Socio" />
           <NavigationProperty Name="SocioR" Relationship="Model.FK_Socio_Comune_R" FromRole="Comune" ToRole="Socio" />
+          <Property Name="CodiceCatastale" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Consulenza">
           <Key>
@@ -404,6 +437,7 @@
           <NavigationProperty Name="Socio" Relationship="Model.FK_Consulenza_Socio" FromRole="Consulenza" ToRole="Socio" />
           <NavigationProperty Name="TipologiaContatto" Relationship="Model.FK_Consulenza_TipologiaContatto" FromRole="Consulenza" ToRole="TipologiaContatto" />
           <NavigationProperty Name="TipologiaPratica" Relationship="Model.FK_Consulenza_TipologiaPratica" FromRole="Consulenza" ToRole="TipologiaPratica" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Pratica">
           <Key>
@@ -421,6 +455,7 @@
           <NavigationProperty Name="Sportello" Relationship="Model.FK_Pratica_Sportello" FromRole="Pratica" ToRole="Sportello" />
           <NavigationProperty Name="StatoPratica" Relationship="Model.FK_Pratica_StatiPratica" FromRole="Pratica" ToRole="StatoPratica" />
           <NavigationProperty Name="TipologiaPratica" Relationship="Model.FK_Pratica_TipologiaPratica" FromRole="Pratica" ToRole="TipologiaPratica" />
+          <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Provincia">
           <Key>
@@ -429,8 +464,9 @@
           <Property Name="IdProvincia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Sigla" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="Descrizione" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Regione" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Comune" Relationship="Model.FK_Comune_Provincia" FromRole="Provincia" ToRole="Comune" />
+          <Property Name="IdRegione" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Regione" Relationship="Model.FK_Provincia_Regione" FromRole="Provincia" ToRole="Regione" />
         </EntityType>
         <EntityType Name="Socio">
           <Key>
@@ -645,6 +681,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Regione">
+          <Key>
+            <PropertyRef Name="IdRegione" />
+          </Key>
+          <Property Name="IdRegione" Type="Int32" Nullable="false" />
+          <Property Name="Descrizione" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Provincia" Relationship="Model.FK_Provincia_Regione" FromRole="Regione" ToRole="Provincia" />
+        </EntityType>
+        <Association Name="FK_Provincia_Regione">
+          <End Type="Model.Regione" Role="Regione" Multiplicity="1" />
+          <End Type="Model.Provincia" Role="Provincia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regione">
+              <PropertyRef Name="IdRegione" />
+            </Principal>
+            <Dependent Role="Provincia">
+              <PropertyRef Name="IdRegione" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -654,6 +710,7 @@
           <EntitySetMapping Name="Comuni">
             <EntityTypeMapping TypeName="Model.Comune">
               <MappingFragment StoreEntitySet="Comune">
+                <ScalarProperty Name="CodiceCatastale" ColumnName="CodiceCatastale" />
                 <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
                 <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
                 <ScalarProperty Name="IdComune" ColumnName="IdComune" />
@@ -663,6 +720,7 @@
           <EntitySetMapping Name="Consulenze">
             <EntityTypeMapping TypeName="Model.Consulenza">
               <MappingFragment StoreEntitySet="Consulenza">
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="IdComune" ColumnName="IdComune" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Nominativo" ColumnName="Nominativo" />
@@ -678,6 +736,7 @@
           <EntitySetMapping Name="Pratiche">
             <EntityTypeMapping TypeName="Model.Pratica">
               <MappingFragment StoreEntitySet="Pratica">
+                <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="DescrizioneRiscontro" ColumnName="DescrizioneRiscontro" />
                 <ScalarProperty Name="IdStatoPratica" ColumnName="IdStatoPratica" />
                 <ScalarProperty Name="DescrizionePratica" ColumnName="DescrizionePratica" />
@@ -692,7 +751,7 @@
           <EntitySetMapping Name="Province">
             <EntityTypeMapping TypeName="Model.Provincia">
               <MappingFragment StoreEntitySet="Provincia">
-                <ScalarProperty Name="Regione" ColumnName="Regione" />
+                <ScalarProperty Name="IdRegione" ColumnName="IdRegione" />
                 <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
                 <ScalarProperty Name="Sigla" ColumnName="Sigla" />
                 <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
@@ -760,6 +819,14 @@
                 <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="IdSocio" ColumnName="IdSocio" />
                 <ScalarProperty Name="IdRinnovo" ColumnName="IdRinnovo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regioni">
+            <EntityTypeMapping TypeName="Model.Regione">
+              <MappingFragment StoreEntitySet="Regione">
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="IdRegione" ColumnName="IdRegione" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

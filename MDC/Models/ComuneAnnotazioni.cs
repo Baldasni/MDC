@@ -19,7 +19,8 @@ namespace MDC.Models
         [Display(Name = "Provincia")]
         public int IdProvincia { get; set; }
         [Required]
+        public string CodiceCatastale { get; set; }
+        [Required]
         public string Descrizione { get; set; }
     }
-
 }

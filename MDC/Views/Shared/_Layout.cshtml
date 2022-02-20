@@ -56,7 +56,7 @@
         @*class="navbar navbar-expand-lg navbar-light bg-light sticky-top">*@
         <div class="sidebar-header bg-dark">
             <a href='@Url.Action("Index", "Home", new { area = "" })' class="navbar-brand">
-                <img alt="MCM" src='@Url.Content("~/Content/images/MDCtrasparente.png")' class="logo" />
+                <img alt="MDC" src='@Url.Content("~/Content/images/MDCesteso.jpg")' class="logo" />
             </a>
         </div>
         @Html.Partial("_SideBarPartial")
@@ -80,7 +80,7 @@
     </nav>
     <!-- Page Content Holder -->
     @*<div class="main-container">*@
-    <div class="main-container px-2">
+    <div class="main-container px-2" style="background-image:url('@Url.Content("~/Content/images/MDCgrande_trasparente.png")'); background-repeat: no-repeat; height: 100%">
     <!--pulsante per nascondere sidebar-->
 
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
@@ -117,15 +117,21 @@
         </div>
     </nav>
 
-    <div id="content" class="row justify-content-around mt-1 mt-lg-3">
-        <div class="col-xl-9 col-lg-11 mb-4">
-            @*<div class="container body-content">
+    <div id="content" class="container">
+        <div class="row justify-content-around mt-1 mt-lg-3">            @*id="content"*@
+            <div class="col-xl-9 col-lg-11 mb-4">
+                @*<div class="container body-content">
                 <div class="row justify-content-center">*@
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; 2022 @*@DateTime.Now.Year - Applicazione ASP.NET*@</p>
-            </footer>
+                <div>
+
+                    @RenderBody()
+
+                </div>
+                <hr />
+                <footer>
+                    <p>&copy; 2022 - Applicativo MDC@*@DateTime.Now.Year - Applicazione ASP.NET*@</p>
+                </footer>
+            </div>
         </div>
     </div>
 </div>

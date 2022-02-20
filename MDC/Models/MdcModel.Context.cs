@@ -35,5 +35,6 @@ namespace MDC.Models
         public virtual DbSet<TipologiaContatto> TipologieContatto { get; set; }
         public virtual DbSet<TipologiaPratica> TipologiePratica { get; set; }
         public virtual DbSet<Rinnovo> Rinnovi { get; set; }
+        public virtual DbSet<Regione> Regioni { get; set; }
     }
 }

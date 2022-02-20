@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -51,16 +52,13 @@
       <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.3\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.3\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -201,6 +199,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Regione.cs">
+      <DependentUpon>MdcModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewModels\ListaSociViewModel.cs" />
     <Compile Include="Models\ViewModels\RicercaSocioViewModel.cs" />
     <Compile Include="Models\ViewModels\SocioViewModel.cs" />
@@ -224,6 +225,7 @@
       <DependentUpon>MdcModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProvinciaAnnotazioni.cs" />
+    <Compile Include="Models\RegioneAnnotazioni.cs" />
     <Compile Include="Models\Rinnovo.cs">
       <DependentUpon>MdcModel.tt</DependentUpon>
     </Compile>
@@ -254,6 +256,7 @@
     <Compile Include="Models\IdentityModels\AspNetUserClaim.cs" />
     <Compile Include="Models\IdentityModels\AspNetUserLogin.cs" />
     <Compile Include="Models\IdentityModels\IdentityModels.cs" />
+    <Compile Include="Models\ViewModels\ListaSociViewModel.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\MdcModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -271,17 +274,22 @@
       <DependentUpon>MdcModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels\RuoloEnum.cs" />
+    <Compile Include="Models\ViewModels\RicercaSocioViewModel.cs" />
+    <Compile Include="Models\ViewModels\SocioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AspNetUserRepository.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Util\CustomValidationAttribute\OptionalRequired.cs" />
+    <Compile Include="Util\EnumHelper.cs" />
+    <Compile Include="Util\Functions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SQL\dbo.Comune.sql" />
     <Content Include="App_Data\SQL\dbo.Consulenza.sql" />
     <Content Include="App_Data\SQL\dbo.DropDb.sql" />
     <Content Include="App_Data\SQL\dbo.Pratica.sql" />
+    <Content Include="App_Data\SQL\dbo.Regione.sql" />
     <Content Include="App_Data\SQL\dbo.Provincia.sql" />
     <Content Include="App_Data\SQL\dbo.Rinnovo.sql" />
     <Content Include="App_Data\SQL\dbo.Socio.sql" />
@@ -290,6 +298,7 @@
     <Content Include="App_Data\SQL\dbo.TipologiaContatto.sql" />
     <Content Include="App_Data\SQL\dbo.TipologiaPratica.sql" />
     <Content Include="App_Data\SQL\Insert.dbo.Comune.sql" />
+    <Content Include="App_Data\SQL\Insert.dbo.Regione.sql" />
     <Content Include="App_Data\SQL\Insert.dbo.Provincia.sql" />
     <Content Include="App_Data\SQL\Insert.dbo.Sportello.sql" />
     <Content Include="App_Data\SQL\Insert.dbo.StatoPratica.sql" />
@@ -304,10 +313,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\MDC.png" />
+    <Content Include="Content\images\MDCesteso.jpg" />
+    <Content Include="Content\images\MDCgrande_trasparente.jpg" />
+    <Content Include="Content\images\MDCgrande_trasparente.png" />
     <Content Include="Content\images\MDCtrasparente.png" />
+    <Content Include="Content\images\MDCgrande.jpg" />
     <Content Include="Content\images\underConstruction.png" />
     <Content Include="Content\MdcBootstrapCustom.css" />
     <Content Include="Content\MdcSideBar.css" />
+    <Content Include="Content\MdcSite.css" />
     <Content Include="Content\MdcSubMenuDropdown.css" />
     <Content Include="favicon.ico" />
     <Content Include="github\bootstrap-table-1.19.1\dist\bootstrap-table-locale-all.js" />
@@ -510,7 +524,6 @@
     <Content Include="github\bootstrap-table-1.19.1\dist\themes\semantic\bootstrap-table-semantic.min.css" />
     <Content Include="github\bootstrap-table-1.19.1\dist\themes\semantic\bootstrap-table-semantic.min.js" />
     <Content Include="Global.asax" />
-    <Content Include="Content\MdcSite.css" />
     <Content Include="Models\MdcModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MdcModel.edmx</DependentUpon>
@@ -568,12 +581,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\MdcSideBar.js" />
     <Content Include="Scripts\MdcSignalR.js" />
+    <Content Include="Scripts\MdcSubMenuDropdown.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
-    <Content Include="Scripts\MdcSubMenuDropdown.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -684,6 +697,16 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Test\Identita.cshtml" />
     <Content Include="Views\Test\NonIdentita.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper.js.flow" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\TabellaSportello\Create.cshtml" />
     <Content Include="Views\TabellaSportello\Delete.cshtml" />
     <Content Include="Views\TabellaSportello\Details.cshtml" />
@@ -747,37 +770,34 @@
     <Content Include="Views\GestionePratiche\Inserimento.cshtml" />
     <Content Include="Views\GestioneSoci\Inserimento.cshtml" />
     <Content Include="Views\GestioneSoci\Rinnovo.cshtml" />
-    <Content Include="Scripts\moment.min.js.map" />
+    <Content Include="Views\GestioneSoci\DatiAnagrafici.cshtml" />
     <Content Include="Scripts\moment-with-locales.min.js.map" />
+    <Content Include="Scripts\moment.min.js.map" />
     <Content Include="Views\Shared\_NavPartial.cshtml" />
     <Content Include="Views\Shared\_SideBarPartial.cshtml" />
-    <Content Include="Views\GestioneSoci\DatiAnagrafici.cshtml" />
     <Content Include="Views\GestioneSoci\ListaSoci.cshtml" />
-    <Content Include="Scripts\umd\popper.min.js.map" />
-    <Content Include="Scripts\umd\popper.js.map" />
-    <Content Include="Scripts\umd\popper.js.flow" />
-    <Content Include="Scripts\umd\popper-utils.min.js.map" />
-    <Content Include="Scripts\umd\popper-utils.js.map" />
-    <Content Include="Scripts\README.md" />
-    <Content Include="Scripts\popper.min.js.map" />
-    <Content Include="Scripts\popper.js.map" />
-    <Content Include="Scripts\popper-utils.min.js.map" />
-    <Content Include="Scripts\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
@@ -808,8 +828,11 @@
     <PropertyGroup>
       <ErrorText>Questo progetto fa riferimento a uno o più pacchetti NuGet che non sono presenti in questo computer. Usare lo strumento di ripristino dei pacchetti NuGet per scaricarli. Per altre informazioni, vedere http://go.microsoft.com/fwlink/?LinkID=322105. Il file mancante è {0}.</ErrorText>
     </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

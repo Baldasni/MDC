@@ -17,7 +17,6 @@ namespace MDC.Models
         public int IdProvincia { get; set; }
         public string Sigla { get; set; }
         public string Descrizione { get; set; }
-        public string Regione { get; set; }
+        public int IdRegione { get; set; }
     }
-
 }

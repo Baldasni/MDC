@@ -31,6 +31,7 @@ namespace MDC.Models
         public Nullable<int> IdTipologiaContatto { get; set; }
         [Required]
         public string Nominativo { get; set; }
+        public string Telefono { get; set; }
         public string Email { get; set; }
         [Display(Name = "Comune")]
         public Nullable<int> IdComune { get; set; }

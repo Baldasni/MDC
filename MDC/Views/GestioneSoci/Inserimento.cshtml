@@ -23,42 +23,102 @@
     <div class="tab-pane fade show active" id="datianagrafici" role="tabpanel" aria-labelledby="home-tab">
         <form>
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-5">
                     <label for="inputNome">Nome</label>
                     <input type="text" class="form-control" id="inputNome" placeholder="Nome">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-5">
                     <label for="inputCognome">Cognome</label>
                     <input type="text" class="form-control" id="inputCognome" placeholder="Cognome">
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="inputAddress">Indirizzo di residenza</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Indirizzo di residenza">
+                <div class="form-group col-md-2">
+                    <label for="inputSesso">Sesso</label><br />
+                    <input class="form-check-input" type="radio" id="ckM" name="inputSesso">
+                    <label for="ckM">Maschio</label><br />
+                    <input class="form-check-input" type="radio" id="ckF" name="inputSesso">
+                    <label for="ckF">Femmina</label>
+                </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputCity">Città</label>
-                    <input type="text" class="form-control" id="inputCity">
+                    <label for="inputCF">Codice fiscale</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="Codice fiscale">
+            </div>
+                <div class="form-group col-md-6">
+                    <label for="inputCF">Data di nascita</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="Data di nascita">
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="inputState">Regione</label>
-                    <select id="inputState" class="form-control">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="inputRegNas">Regione di nascita / estero</label>
+                    <select id="inputRegNas" class="form-control">
                         <option selected>Choose...</option>
                         <option>...</option>
                     </select>
                 </div>
-                <div class="form-group col-md-2">
-                    <label for="inputZip">CAP</label>
-                    <input type="text" class="form-control" id="inputZip">
+                <div class="form-group col-md-3">
+                    <label for="inputProvNas">Provincia di nascita / estero</label>
+                    <select id="inputProvNas" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputComNas">Comune di nascita / stato estero</label>
+                    <select id="inputComNas" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                        Check me out
-                    </label>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                <label for="inputAddress">Indirizzo di residenza</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="Indirizzo di residenza">
+            </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputRegRes">Regione di residenza / estero</label>
+                    <select id="inputRegRes" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputProvRes">Provincia di residenza / estero</label>
+                    <select id="inputProvRes" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputComRes">Comune di residenza / stato estero</label>
+                    <select id="inputComRes" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputCap">CAP</label>
+                    <input type="text" class="form-control" id="inputCap">
+                </div>
+                </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail">Email</label>
+                    <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+            </div>
+                <div class="form-group col-md-3">
+                    <label for="inputTel1">Telefono principale</label>
+                    <input type="text" class="form-control" id="inputTel1">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputTel2">Telefono secondario</label>
+                    <input type="text" class="form-control" id="inputTel2">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Salva</button>

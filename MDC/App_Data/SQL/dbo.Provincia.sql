@@ -19,10 +19,15 @@ CREATE TABLE [dbo].[Provincia]
     [IdProvincia]        		INTEGER		  	NOT NULL IDENTITY(1,1),
 	[Sigla] 		        	CHAR (02)   	NOT NULL,
 	[Descrizione] 		        NVARCHAR (50)   NOT NULL,
-	[Regione] 		        	NVARCHAR (50)   NOT NULL
+	[IdRegione] 	        	INTEGER		    NOT NULL
     CONSTRAINT [PK_Provincia] PRIMARY KEY  CLUSTERED ([IdProvincia])
 
 );
+
+ALTER TABLE [dbo].[Provincia] ADD CONSTRAINT [FK_Provincia_Regione]
+								FOREIGN KEY ([IdRegione]) REFERENCES [dbo].[Regione] ([IdRegione])
+								ON DELETE NO ACTION;
+GO
 
 -- Reinserimento FK precedentemente cancellata 
 IF EXISTS(SELECT * FROM sys.tables WHERE SCHEMA_NAME(schema_id) LIKE 'dbo' AND name like 'Comune')  

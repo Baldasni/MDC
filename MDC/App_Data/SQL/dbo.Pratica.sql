@@ -15,7 +15,8 @@ CREATE TABLE [dbo].[Pratica]
     [IdTipologiaPratica]   INTEGER			NOT NULL,
     [DescrizionePratica]   NVARCHAR (200)   NOT NULL,
     [IdStatoPratica]       INTEGER			NOT NULL,
-	[DescrizioneRiscontro] NVARCHAR (200)       NULL
+	[DescrizioneRiscontro] NVARCHAR (200)       NULL,
+	[Note]				   NVARCHAR (200)       NULL
     CONSTRAINT [PK_Pratica] PRIMARY KEY CLUSTERED ([IdPratica])
 );
 GO
